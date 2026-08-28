@@ -1,7 +1,7 @@
-using TeslaFleetManagementApi.Core.ErrorResponse;
-using TeslaFleetManagementApi.Core.Response;
+using Tesla.Core.ErrorResponse;
+using Tesla.Core.Response;
 
-namespace TeslaFleetManagementApi.Core.Models;
+namespace Tesla.Core.Models;
 
 internal sealed class ApiResponse<TResponse, TError>
 {

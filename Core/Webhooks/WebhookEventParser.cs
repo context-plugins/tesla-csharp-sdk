@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace TeslaFleetManagementApi.Core.Webhooks;
+namespace Tesla.Core.Webhooks;
 
 public abstract class WebhookEventParser<TEvent>
     where TEvent : class

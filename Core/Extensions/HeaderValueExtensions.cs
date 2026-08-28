@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http.Headers;
 
-namespace TeslaFleetManagementApi.Core.Extensions;
+namespace Tesla.Core.Extensions;
 
 internal static class HeaderValueExtensions
 {

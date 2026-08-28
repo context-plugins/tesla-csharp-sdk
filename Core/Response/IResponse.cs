@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TeslaFleetManagementApi.Core.Response;
+namespace Tesla.Core.Response;
 
 internal interface IResponse<TResponse>
 {

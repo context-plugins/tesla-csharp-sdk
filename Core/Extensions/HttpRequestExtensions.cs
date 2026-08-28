@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Net.Http.Headers;
-using TeslaFleetManagementApi.Core.Models;
+using Tesla.Core.Models;
 
-namespace TeslaFleetManagementApi.Core.Extensions;
+namespace Tesla.Core.Extensions;
 
 internal static class HttpRequestExtensions
 {

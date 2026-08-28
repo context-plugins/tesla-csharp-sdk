@@ -1,7 +1,7 @@
-using TeslaFleetManagementApi.Core.Models;
-using TeslaFleetManagementApi.Servers;
+using Tesla.Core.Models;
+using Tesla.Servers;
 
-namespace TeslaFleetManagementApi;
+namespace Tesla;
 
 public class Server
 {

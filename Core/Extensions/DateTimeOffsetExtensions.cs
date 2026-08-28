@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace TeslaFleetManagementApi.Core.Extensions;
+namespace Tesla.Core.Extensions;
 
 internal static class DateTimeOffsetExtensions
 {

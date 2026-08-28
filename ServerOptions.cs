@@ -1,6 +1,6 @@
-using TeslaFleetManagementApi.Servers;
+using Tesla.Servers;
 
-namespace TeslaFleetManagementApi;
+namespace Tesla;
 
 public class ServerOptions
 {

@@ -5,12 +5,12 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using TeslaFleetManagementApi.Core.ErrorResponse;
-using TeslaFleetManagementApi.Core.Models;
-using TeslaFleetManagementApi.Core.Request;
-using TeslaFleetManagementApi.Core.Response;
+using Tesla.Core.ErrorResponse;
+using Tesla.Core.Models;
+using Tesla.Core.Request;
+using Tesla.Core.Response;
 
-namespace TeslaFleetManagementApi.Core.Authentication.OAuth2.AuthorizationCode;
+namespace Tesla.Core.Authentication.OAuth2.AuthorizationCode;
 
 internal sealed class OAuth2AuthorizationCodeStrategy
     : IOAuth2RefreshableTokenStrategy<OAuth2AuthorizationCodeCredentials>

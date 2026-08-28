@@ -2,18 +2,18 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using TeslaFleetManagementApi.Core;
-using TeslaFleetManagementApi.Core.Authentication;
-using TeslaFleetManagementApi.Core.ErrorResponse;
-using TeslaFleetManagementApi.Core.Exceptions;
-using TeslaFleetManagementApi.Core.Extensions;
-using TeslaFleetManagementApi.Core.Models;
-using TeslaFleetManagementApi.Core.Request;
-using TeslaFleetManagementApi.Core.Response;
-using TeslaFleetManagementApi.Models;
-using TeslaFleetManagementApi.Models.Enums;
+using Tesla.Core;
+using Tesla.Core.Authentication;
+using Tesla.Core.ErrorResponse;
+using Tesla.Core.Exceptions;
+using Tesla.Core.Extensions;
+using Tesla.Core.Models;
+using Tesla.Core.Request;
+using Tesla.Core.Response;
+using Tesla.Models;
+using Tesla.Models.Enums;
 
-namespace TeslaFleetManagementApi.Api;
+namespace Tesla.Api;
 
 /// <summary>
 /// Energy site and Powerwall endpoints

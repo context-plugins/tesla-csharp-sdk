@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TeslaFleetManagementApi.Core.Authentication.ApiKey;
+namespace Tesla.Core.Authentication.ApiKey;
 
 internal sealed class ApiKeyQueryScheme : IAuthScheme
 {

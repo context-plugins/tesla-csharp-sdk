@@ -1,4 +1,4 @@
-namespace TeslaFleetManagementApi.Core.Models;
+namespace Tesla.Core.Models;
 
 internal readonly record struct TemplateParam(string Key, object? Value)
 {

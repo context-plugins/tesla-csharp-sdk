@@ -2,9 +2,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http.Headers;
-using TeslaFleetManagementApi.Core.Exceptions;
+using Tesla.Core.Exceptions;
 
-namespace TeslaFleetManagementApi.Core.Models;
+namespace Tesla.Core.Models;
 
 /// <summary>
 ///     Represents either a successful response of type <typeparamref name="TResponse" />

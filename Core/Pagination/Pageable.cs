@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TeslaFleetManagementApi.Core.Pagination;
+namespace Tesla.Core.Pagination;
 
 public sealed class Pageable<TPage, TItem> : IAsyncEnumerable<TItem>
 {

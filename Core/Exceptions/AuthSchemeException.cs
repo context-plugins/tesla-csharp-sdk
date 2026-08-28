@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace TeslaFleetManagementApi.Core.Exceptions;
+namespace Tesla.Core.Exceptions;
 
 public sealed class AuthSchemeException : Exception
 {

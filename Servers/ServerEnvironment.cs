@@ -1,8 +1,8 @@
 using System;
 using System.Text.Json.Serialization;
-using TeslaFleetManagementApi.Core.Enum;
+using Tesla.Core.Enum;
 
-namespace TeslaFleetManagementApi.Servers;
+namespace Tesla.Servers;
 
 [JsonConverter(typeof(StringEnumConverter<ServerEnvironment>))]
 public record ServerEnvironment : StringEnum<ServerEnvironment>

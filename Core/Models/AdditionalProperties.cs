@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
-using TeslaFleetManagementApi.Core.Extensions;
+using Tesla.Core.Extensions;
 
-namespace TeslaFleetManagementApi.Core.Models;
+namespace Tesla.Core.Models;
 
 public sealed class AdditionalProperties : IDictionary<string, JsonElement>, IEquatable<AdditionalProperties>
 {

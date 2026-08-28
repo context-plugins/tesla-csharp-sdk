@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Net.Http;
-using TeslaFleetManagementApi.Core.Authentication;
-using TeslaFleetManagementApi.Core.Request;
+using Tesla.Core.Authentication;
+using Tesla.Core.Request;
 
-namespace TeslaFleetManagementApi.Core.Models;
+namespace Tesla.Core.Models;
 
 internal sealed class ApiRequest
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 
-namespace TeslaFleetManagementApi.Core.Configuration;
+namespace Tesla.Core.Configuration;
 
 public sealed record RetryAttempt
 {

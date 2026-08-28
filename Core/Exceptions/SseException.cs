@@ -1,6 +1,6 @@
 using System;
 
-namespace TeslaFleetManagementApi.Core.Exceptions;
+namespace Tesla.Core.Exceptions;
 
 public abstract class SseException : Exception
 {

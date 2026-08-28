@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 
-namespace TeslaFleetManagementApi.Core.Configuration;
+namespace Tesla.Core.Configuration;
 
 public record RetryOptions
 {

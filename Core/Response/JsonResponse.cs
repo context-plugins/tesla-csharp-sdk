@@ -3,9 +3,9 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using TeslaFleetManagementApi.Core.Extensions;
+using Tesla.Core.Extensions;
 
-namespace TeslaFleetManagementApi.Core.Response;
+namespace Tesla.Core.Response;
 
 internal sealed class JsonResponse<TResponse> : IResponse<TResponse>
 {

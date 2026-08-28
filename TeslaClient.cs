@@ -1,17 +1,17 @@
 using System.Net.Http;
-using TeslaFleetManagementApi.Api;
-using TeslaFleetManagementApi.Core;
-using TeslaFleetManagementApi.Core.Logging;
-using TeslaFleetManagementApi.Core.Models;
+using Tesla.Api;
+using Tesla.Core;
+using Tesla.Core.Logging;
+using Tesla.Core.Models;
 
-namespace TeslaFleetManagementApi;
+namespace Tesla;
 
 /// <summary>
 /// Unofficial OpenAPI specification for Tesla Fleet Management Charging endpoints.
 /// </summary>
-public sealed class TeslaFleetManagementApiClient
+public sealed class TeslaClient
 {
-    public TeslaFleetManagementApiClient(HttpClient httpClient, TeslaFleetManagementApiClientOptions options)
+    public TeslaClient(HttpClient httpClient, TeslaClientOptions options)
     {
         var server = new Server(options.Environment, options.Server);
         var queryParameterFactory = new QueryParameterFactory([]);
@@ -19,14 +19,14 @@ public sealed class TeslaFleetManagementApiClient
         var urlFactory = new UriFactory(queryParameterFactory, templateParamsFactory);
         var httpStatusPolicy = new HttpStatusPolicy([]);
         var headersFactory =
-            new HeadersFactory([new HeaderParam("User-Agent", "TeslaFleetManagementApiClient/1.0.0 CSharp"),
+            new HeadersFactory([new HeaderParam("User-Agent", "TeslaClient/1.0.0 CSharp"),
                     new HeaderParam("X-APIMatic-Lang", "CSharp"),
                     new HeaderParam("X-APIMatic-Package-Version", "1.0.0"),
                     new HeaderParam("X-APIMatic-Gen-Version", "4.0.0"),
                     new HeaderParam("X-APIMatic-OS", RuntimeEnvironment.Os),
                     new HeaderParam("X-APIMatic-Runtime", RuntimeEnvironment.Runtime)]);
         var resiliencePipelineFactory = new ResiliencePipelineFactory(options.Retry);
-        var httpLogger = new HttpLogger(options.Logging, "TeslaFleetManagementApiClient");
+        var httpLogger = new HttpLogger(options.Logging, "TeslaClient");
         var rawClient =
             new RawClient(httpClient,
                 urlFactory,

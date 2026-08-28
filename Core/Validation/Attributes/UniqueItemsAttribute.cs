@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Json;
 
-namespace TeslaFleetManagementApi.Core.Validation.Attributes;
+namespace Tesla.Core.Validation.Attributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public sealed class UniqueItemsAttribute : ValidationAttribute

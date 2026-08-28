@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using TeslaFleetManagementApi.Core.Enum;
+using Tesla.Core.Enum;
 
-namespace TeslaFleetManagementApi.Models.Enums;
+namespace Tesla.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<WhichTrunk>))]
 public sealed record WhichTrunk : StringEnum<WhichTrunk>

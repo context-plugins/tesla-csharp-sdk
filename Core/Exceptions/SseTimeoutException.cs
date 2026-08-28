@@ -1,6 +1,6 @@
 using System;
 
-namespace TeslaFleetManagementApi.Core.Exceptions;
+namespace Tesla.Core.Exceptions;
 
 public sealed class SseTimeoutException : SseException
 {

@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TeslaFleetManagementApi.Core.Authentication;
+namespace Tesla.Core.Authentication;
 
 public interface IAuthScheme
 {

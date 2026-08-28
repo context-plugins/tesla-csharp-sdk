@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TeslaFleetManagementApi.Core.Webhooks;
+namespace Tesla.Core.Webhooks;
 
 public sealed class WebhookRequest
 {

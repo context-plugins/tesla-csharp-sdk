@@ -1,7 +1,7 @@
 using System.Net.Http;
-using TeslaFleetManagementApi.Core.Extensions;
+using Tesla.Core.Extensions;
 
-namespace TeslaFleetManagementApi.Core.Request;
+namespace Tesla.Core.Request;
 
 internal sealed class EmptyBody : IRequest
 {

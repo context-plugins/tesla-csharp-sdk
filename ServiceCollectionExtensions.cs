@@ -3,15 +3,15 @@ using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace TeslaFleetManagementApi;
+namespace Tesla;
 
 public static class ServiceCollectionExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddTeslaFleetManagementApiClient(Action<TeslaFleetManagementApiClientOptions>? configure = null)
+        public IServiceCollection AddTeslaClient(Action<TeslaClientOptions>? configure = null)
         {
-            var options = new TeslaFleetManagementApiClientOptions();
+            var options = new TeslaClientOptions();
             configure?.Invoke(options);
             services.AddHttpClient();
             services.AddSingleton(sp =>
@@ -23,7 +23,7 @@ public static class ServiceCollectionExtensions
                         };
                     var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
                     var httpClient = httpClientFactory.CreateClient();
-                    return new TeslaFleetManagementApiClient(httpClient, options);
+                    return new TeslaClient(httpClient, options);
                 });
             return services;
         }

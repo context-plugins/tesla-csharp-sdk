@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Polly;
 using Polly.Retry;
 using Polly.Timeout;
-using TeslaFleetManagementApi.Core.Configuration;
-using TeslaFleetManagementApi.Core.Logging;
-using TeslaFleetManagementApi.Core.Request;
+using Tesla.Core.Configuration;
+using Tesla.Core.Logging;
+using Tesla.Core.Request;
 
-namespace TeslaFleetManagementApi.Core;
+namespace Tesla.Core;
 
 internal sealed class ResiliencePipelineFactory
 {

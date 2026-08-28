@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json;
 
-namespace TeslaFleetManagementApi.Core.Webhooks;
+namespace Tesla.Core.Webhooks;
 
 internal abstract record WebhookTypeSource
 {

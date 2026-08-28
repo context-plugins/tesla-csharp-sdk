@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using TeslaFleetManagementApi.Core.Models;
-using TeslaFleetManagementApi.Models.Enums;
+using Tesla.Core.Models;
+using Tesla.Models.Enums;
 
-namespace TeslaFleetManagementApi.Models;
+namespace Tesla.Models;
 
 public record OperationRequest
 {

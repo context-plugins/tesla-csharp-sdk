@@ -1,20 +1,20 @@
 <!-- Generated file — do not edit; regenerated with the SDK. -->
 
-# SDK map — Tesla Fleet Management API (.NET)
+# SDK map — Tesla (.NET)
 
 > A generated table of contents for this SDK. Consult this map and its sub-pages to learn signatures, error types, and server/auth wiring **by lookup**. Model shapes and enum values are *not* duplicated here — the map names the file declaring each type; read the shape there. The compiler is the backstop: a wrong name fails to build.
 
 |  |  |
 | --- | --- |
-| SDK display name | Tesla Fleet Management API |
-| Root namespace | `TeslaFleetManagementApi` |
+| SDK display name | Tesla |
+| Root namespace | `Tesla` |
 | Target framework | `netstandard2.0` (C# `LangVersion 14`, `Nullable enable`) |
 | API spec version | `1.0.0` |
 | Generator | APIMatic |
 
 Staleness check: the API spec version above changes when the SDK is regenerated from a new spec. If a lookup here fails to compile, trust the compiler and re-read the source file named in the row.
 
-All `Source` paths on this map and its sub-pages are relative to the **SDK root** — the directory holding this file and `TeslaFleetManagementApi.csproj` — never to the page that carries them. Open them as-is from the SDK root, from any page; if the SDK sits under a subdirectory of a larger repo, prefix that subdirectory.
+All `Source` paths on this map and its sub-pages are relative to the **SDK root** — the directory holding this file and `Tesla.csproj` — never to the page that carries them. Open them as-is from the SDK root, from any page; if the SDK sits under a subdirectory of a larger repo, prefix that subdirectory.
 
 ---
 
@@ -24,7 +24,7 @@ All `Source` paths on this map and its sub-pages are relative to the **SDK root*
 var httpClient = new HttpClient();
 // TODO: configure more client options here
 var options =
-    new TeslaFleetManagementApiClientOptions
+    new TeslaClientOptions
     {
         BearerAuth = "YOUR_BEARER_TOKEN",
         ThirdpartytokenClientCredentials = new OAuth2ClientCredentials
@@ -40,13 +40,13 @@ var options =
         },
         Environment = ServerEnvironment.Production,
     };
-var client = new TeslaFleetManagementApiClient(httpClient, options);
+var client = new TeslaClient(httpClient, options);
 ```
 
-DI alternative (`services.AddTeslaFleetManagementApiClient`):
+DI alternative (`services.AddTeslaClient`):
 
 ```csharp
-services.AddTeslaFleetManagementApiClient(options =>
+services.AddTeslaClient(options =>
     {
         options.BearerAuth = "YOUR_BEARER_TOKEN";
         options.ThirdpartytokenClientCredentials =
@@ -67,9 +67,9 @@ services.AddTeslaFleetManagementApiClient(options =>
     });
 ```
 
-Every API group is a property on the client (e.g. `client.Charging`). Source: `TeslaFleetManagementApiClient.cs`. The only constructor is `TeslaFleetManagementApiClient(HttpClient httpClient, TeslaFleetManagementApiClientOptions options)`.
+Every API group is a property on the client (e.g. `client.Charging`). Source: `TeslaClient.cs`. The only constructor is `TeslaClient(HttpClient httpClient, TeslaClientOptions options)`.
 
-All `TeslaFleetManagementApiClientOptions` properties (source: `TeslaFleetManagementApiClientOptions.cs`):
+All `TeslaClientOptions` properties (source: `TeslaClientOptions.cs`):
 
 | Property | Type |
 | --- | --- |
@@ -84,7 +84,7 @@ All `TeslaFleetManagementApiClientOptions` properties (source: `TeslaFleetManage
 | `ThirdpartytokenClientCredentials` | `OAuth2ClientCredentials?` |
 | `ThirdpartytokenClientCredentialsTokenStrategy` | `IOAuth2TokenStrategy<OAuth2ClientCredentials>?` |
 
-`RetryOptions` members (namespace `TeslaFleetManagementApi.Core.Configuration` — add `using TeslaFleetManagementApi.Core.Configuration;`; source: `Core/Configuration/RetryOptions.cs`; all members are `required`, so build a full instance or start from `RetryOptions.Default()`):
+`RetryOptions` members (namespace `Tesla.Core.Configuration` — add `using Tesla.Core.Configuration;`; source: `Core/Configuration/RetryOptions.cs`; all members are `required`, so build a full instance or start from `RetryOptions.Default()`):
 
 | Member | Type |
 | --- | --- |
@@ -176,10 +176,10 @@ Namespaces by content type (add `using` accordingly):
 
 | Contents | Namespace |
 | --- | --- |
-| Client & options (root) | `TeslaFleetManagementApi` |
-| Operation controllers (`Api/`) | `TeslaFleetManagementApi.Api` |
-| Records (`Models/`) | `TeslaFleetManagementApi.Models` |
-| Enums (`Models/Enums/`) | `TeslaFleetManagementApi.Models.Enums` |
+| Client & options (root) | `Tesla` |
+| Operation controllers (`Api/`) | `Tesla.Api` |
+| Records (`Models/`) | `Tesla.Models` |
+| Enums (`Models/Enums/`) | `Tesla.Models.Enums` |
 
 ---
 

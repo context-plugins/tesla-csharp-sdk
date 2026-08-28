@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
-namespace TeslaFleetManagementApi.Core.Configuration;
+namespace Tesla.Core.Configuration;
 
 public record LoggingOptions
 {

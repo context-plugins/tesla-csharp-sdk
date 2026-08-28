@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace TeslaFleetManagementApi.Core.Models;
+namespace Tesla.Core.Models;
 
 [DebuggerDisplay("{GetDebuggerDisplay(),nq}")]
 internal readonly record struct Optional<TValue>

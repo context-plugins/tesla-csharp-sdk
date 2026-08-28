@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using TeslaFleetManagementApi.Core.Models;
+using Tesla.Core.Models;
 
-namespace TeslaFleetManagementApi.Core;
+namespace Tesla.Core;
 
 internal sealed class UriFactory
 {

@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using TeslaFleetManagementApi.Core.Models;
+using Tesla.Core.Models;
 
-namespace TeslaFleetManagementApi.Models;
+namespace Tesla.Models;
 
 public record GuestModeRequest
 {

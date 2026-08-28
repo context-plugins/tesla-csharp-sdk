@@ -1,6 +1,6 @@
 using System;
 
-namespace TeslaFleetManagementApi.Core.Webhooks.Signing;
+namespace Tesla.Core.Webhooks.Signing;
 
 internal abstract record SignatureDigestEncoding
 {

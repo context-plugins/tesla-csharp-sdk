@@ -1,9 +1,9 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using TeslaFleetManagementApi.Core.ErrorResponse;
+using Tesla.Core.ErrorResponse;
 
-namespace TeslaFleetManagementApi.Core.Response;
+namespace Tesla.Core.Response;
 
 internal sealed class RawErrorBodyResponse : IResponse<RawError>
 {

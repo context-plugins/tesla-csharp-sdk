@@ -1,9 +1,9 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
-using TeslaFleetManagementApi.Core.Extensions;
-using TeslaFleetManagementApi.Core.Models;
+using Tesla.Core.Extensions;
+using Tesla.Core.Models;
 
-namespace TeslaFleetManagementApi.Core.Request;
+namespace Tesla.Core.Request;
 
 internal sealed class BinaryRequest : IRequest
 {

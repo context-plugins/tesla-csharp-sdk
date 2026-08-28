@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TeslaFleetManagementApi.Core.Validation.Attributes;
+namespace Tesla.Core.Validation.Attributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public sealed class MaximumAttribute : ValidationAttribute

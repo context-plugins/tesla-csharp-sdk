@@ -1,8 +1,8 @@
 using System;
 using Microsoft.Extensions.Logging;
-using TeslaFleetManagementApi.Core.Configuration;
+using Tesla.Core.Configuration;
 
-namespace TeslaFleetManagementApi.Core.Logging;
+namespace Tesla.Core.Logging;
 
 internal static class LoggingEnvironment
 {

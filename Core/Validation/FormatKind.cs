@@ -1,4 +1,4 @@
-namespace TeslaFleetManagementApi.Core.Validation;
+namespace Tesla.Core.Validation;
 
 public enum FormatKind
 {

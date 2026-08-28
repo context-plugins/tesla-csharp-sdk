@@ -2,9 +2,9 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using TeslaFleetManagementApi.Core.Extensions;
+using Tesla.Core.Extensions;
 
-namespace TeslaFleetManagementApi.Core.Request;
+namespace Tesla.Core.Request;
 
 internal sealed class JsonRequest<TData>(TData data, JsonSerializerOptions options) : IRequest
 {

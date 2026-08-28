@@ -4,12 +4,12 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using TeslaFleetManagementApi.Core.ErrorResponse;
-using TeslaFleetManagementApi.Core.Models;
-using TeslaFleetManagementApi.Core.Request;
-using TeslaFleetManagementApi.Core.Response;
+using Tesla.Core.ErrorResponse;
+using Tesla.Core.Models;
+using Tesla.Core.Request;
+using Tesla.Core.Response;
 
-namespace TeslaFleetManagementApi.Core.Authentication.OAuth2.ClientCredentials;
+namespace Tesla.Core.Authentication.OAuth2.ClientCredentials;
 
 internal sealed class OAuth2ClientCredentialsStrategy : IOAuth2TokenStrategy<OAuth2ClientCredentials>
 {
