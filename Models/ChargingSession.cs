@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using TeslaFleetManagementApi.Core.Models;
 
 namespace TeslaFleetManagementApi.Models;
 
@@ -48,4 +49,7 @@ public record ChargingSession
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("tariffs")]
     public Tariffs? Tariffs { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

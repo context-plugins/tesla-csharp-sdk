@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json.Serialization;
+using TeslaFleetManagementApi.Core.Models;
 
 namespace TeslaFleetManagementApi.Models;
 
@@ -16,4 +17,7 @@ public record ResponseMeResponse
 
     [JsonPropertyName("vault_uuid")]
     public required Guid VaultUuid { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

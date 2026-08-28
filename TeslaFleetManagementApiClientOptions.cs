@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using TeslaFleetManagementApi.Core.Authentication.OAuth2;
 using TeslaFleetManagementApi.Core.Authentication.OAuth2.AuthorizationCode;
 using TeslaFleetManagementApi.Core.Authentication.OAuth2.ClientCredentials;
 using TeslaFleetManagementApi.Core.Configuration;
+using TeslaFleetManagementApi.Core.Hooks;
 using TeslaFleetManagementApi.Servers;
 
 namespace TeslaFleetManagementApi;
@@ -12,6 +14,7 @@ public class TeslaFleetManagementApiClientOptions
     public RetryOptions Retry { get; set; } = RetryOptions.Default();
     public LoggingOptions Logging { get; set; } = new();
     public ServerOptions Server { get; set; } = new();
+    public IReadOnlyList<SdkHook> Hooks { get; set; } = [];
     public string? BearerAuth { get; set; }
     public OAuth2AuthorizationCodeCredentials? ThirdpartytokenAuthorizationCode { get; set; }
     public IOAuth2RefreshableTokenStrategy<OAuth2AuthorizationCodeCredentials>? ThirdpartytokenAuthorizationCodeTokenStrategy { get; set; }

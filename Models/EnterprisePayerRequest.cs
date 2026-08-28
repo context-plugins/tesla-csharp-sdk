@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using TeslaFleetManagementApi.Core.Models;
 
 namespace TeslaFleetManagementApi.Models;
 
@@ -14,4 +15,7 @@ public record EnterprisePayerRequest
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("account_id")]
     public string? AccountId { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

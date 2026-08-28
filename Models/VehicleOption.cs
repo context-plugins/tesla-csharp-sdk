@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using TeslaFleetManagementApi.Core.Models;
 
 namespace TeslaFleetManagementApi.Models;
 
@@ -19,4 +20,7 @@ public record VehicleOption
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("isActive")]
     public bool? IsActive { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

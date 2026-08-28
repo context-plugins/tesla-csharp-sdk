@@ -212,7 +212,7 @@ public sealed class VehicleCommands
     /// <remarks>
     /// Deactivates PIN to Drive and resets the associated PIN for supported firmware versions.
     /// </remarks>
-    public Task<CommandResponse> ClearPintoDriveAdmin(string vehicleTag,
+    public Task<CommandResponse> ClearPiNtoDriveAdmin(string vehicleTag,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/vehicles/{vehicle_tag}/command/clear_pin_to_drive_admin"),

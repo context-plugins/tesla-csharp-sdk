@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using TeslaFleetManagementApi.Core.Models;
 
 namespace TeslaFleetManagementApi.Models;
 
@@ -35,4 +36,7 @@ public record VehicleBase
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("calendar_enabled")]
     public bool? CalendarEnabled { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

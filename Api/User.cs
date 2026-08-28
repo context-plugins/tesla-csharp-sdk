@@ -34,7 +34,7 @@ public sealed class User
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="OrdersResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<OrdersResponse> GetActiveOrdersForAuser(RequestOptions? requestOptions = null,
+    public Task<OrdersResponse> GetActiveOrdersForAUser(RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/users/orders"),
             [],
@@ -55,7 +55,7 @@ public sealed class User
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="BackupResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<BackupResponse> GetCustomFeatureFlagsForAuser(RequestOptions? requestOptions = null,
+    public Task<BackupResponse> GetCustomFeatureFlagsForAUser(RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/users/feature_config"),
             [],
@@ -76,7 +76,7 @@ public sealed class User
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="MeResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<MeResponse> GetSummaryOfAuserSaccount(RequestOptions? requestOptions = null,
+    public Task<MeResponse> GetSummaryOfAUserSAccount(RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/users/me"),
             [],
@@ -97,7 +97,7 @@ public sealed class User
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="RegionResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<RegionResponse> GetUserSregionAndFleetApiBaseUrl(RequestOptions? requestOptions = null,
+    public Task<RegionResponse> GetUserSRegionAndFleetApiBaseUrl(RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/users/region"),
             [],

@@ -28,7 +28,13 @@ public sealed class TeslaFleetManagementApiClient
         var resiliencePipelineFactory = new ResiliencePipelineFactory(options.Retry);
         var httpLogger = new HttpLogger(options.Logging, "TeslaFleetManagementApiClient");
         var rawClient =
-            new RawClient(httpClient, urlFactory, httpStatusPolicy, headersFactory, resiliencePipelineFactory, httpLogger);
+            new RawClient(httpClient,
+                urlFactory,
+                httpStatusPolicy,
+                headersFactory,
+                resiliencePipelineFactory,
+                httpLogger,
+                options.Hooks);
         var auth = new AuthSchemes(options, server, rawClient, urlFactory);
         Charging = new Charging(rawClient, server, auth);
         Energy = new Energy(rawClient, server, auth);

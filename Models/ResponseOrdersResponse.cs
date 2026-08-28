@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using TeslaFleetManagementApi.Core.Models;
 
 namespace TeslaFleetManagementApi.Models;
 
@@ -33,4 +34,7 @@ public record ResponseOrdersResponse
 
     [JsonPropertyName("isB2b")]
     public required bool IsB2B { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

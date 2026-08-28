@@ -37,7 +37,7 @@ public sealed class Partner
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="PublicKeyResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<PublicKeyResponse> GetPublicKeyForAdomain(string domain,
+    public Task<PublicKeyResponse> GetPublicKeyForADomain(string domain,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/partner_accounts/public_key"),
@@ -102,7 +102,7 @@ public sealed class Partner
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="RegisterPartnerResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<RegisterPartnerResponse> RegisterApartnerAccount(RegisterPartnerRequest body,
+    public Task<RegisterPartnerResponse> RegisterAPartnerAccount(RegisterPartnerRequest body,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/partner_accounts"),

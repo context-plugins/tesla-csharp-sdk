@@ -40,7 +40,7 @@ public sealed class Energy
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="BackupResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<BackupResponse> AdjustSiteSbackupReserve(string energySiteId,
+    public Task<BackupResponse> AdjustSiteSBackupReserve(string energySiteId,
         BackupRequest body,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
@@ -65,7 +65,7 @@ public sealed class Energy
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="GenericUpdateResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<GenericUpdateResponse> AdjustSiteSoffGridVehicleChargingReserve(string energySiteId,
+    public Task<GenericUpdateResponse> AdjustSiteSOffGridVehicleChargingReserve(string energySiteId,
         OffGridVehicleChargingReserveRequest body,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>

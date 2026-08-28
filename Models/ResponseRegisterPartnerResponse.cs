@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json.Serialization;
+using TeslaFleetManagementApi.Core.Models;
 
 namespace TeslaFleetManagementApi.Models;
 
@@ -51,4 +52,7 @@ public record ResponseRegisterPartnerResponse
 
     [JsonPropertyName("public_key_hash")]
     public required string PublicKeyHash { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

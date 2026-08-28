@@ -181,7 +181,7 @@ catch (SdkException<RawError> ex)
 > Source: [Energy](Api/Energy.cs)
 
 <details>
-<summary><code>Task&lt;BackupResponse&gt; AdjustSiteSbackupReserve(string energySiteId, BackupRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;BackupResponse&gt; AdjustSiteSBackupReserve(string energySiteId, BackupRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -194,7 +194,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.Energy.AdjustSiteSbackupReserve(energySiteId, body);
+    var response = await client.Energy.AdjustSiteSBackupReserve(energySiteId, body);
     // TODO: Handle 'response' of type BackupResponse
 }
 catch (SdkException<RawError> ex)
@@ -237,7 +237,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;GenericUpdateResponse&gt; AdjustSiteSoffGridVehicleChargingReserve(string energySiteId, OffGridVehicleChargingReserveRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;GenericUpdateResponse&gt; AdjustSiteSOffGridVehicleChargingReserve(string energySiteId, OffGridVehicleChargingReserveRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -250,7 +250,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.Energy.AdjustSiteSoffGridVehicleChargingReserve(energySiteId, body);
+    var response = await client.Energy.AdjustSiteSOffGridVehicleChargingReserve(energySiteId, body);
     // TODO: Handle 'response' of type GenericUpdateResponse
 }
 catch (SdkException<RawError> ex)
@@ -802,7 +802,7 @@ catch (SdkException<RawError> ex)
 > Source: [Partner](Api/Partner.cs)
 
 <details>
-<summary><code>Task&lt;PublicKeyResponse&gt; GetPublicKeyForAdomain(string domain, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;PublicKeyResponse&gt; GetPublicKeyForADomain(string domain, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -815,7 +815,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.Partner.GetPublicKeyForAdomain(domain);
+    var response = await client.Partner.GetPublicKeyForADomain(domain);
     // TODO: Handle 'response' of type PublicKeyResponse
 }
 catch (SdkException<RawError> ex)
@@ -943,7 +943,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;RegisterPartnerResponse&gt; RegisterApartnerAccount(RegisterPartnerRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;RegisterPartnerResponse&gt; RegisterAPartnerAccount(RegisterPartnerRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -956,7 +956,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.Partner.RegisterApartnerAccount(body);
+    var response = await client.Partner.RegisterAPartnerAccount(body);
     // TODO: Handle 'response' of type RegisterPartnerResponse
 }
 catch (SdkException<RawError> ex)
@@ -1002,7 +1002,7 @@ catch (SdkException<RawError> ex)
 > Source: [User](Api/User.cs)
 
 <details>
-<summary><code>Task&lt;OrdersResponse&gt; GetActiveOrdersForAuser(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;OrdersResponse&gt; GetActiveOrdersForAUser(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -1015,7 +1015,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.User.GetActiveOrdersForAuser();
+    var response = await client.User.GetActiveOrdersForAUser();
     // TODO: Handle 'response' of type OrdersResponse
 }
 catch (SdkException<RawError> ex)
@@ -1045,7 +1045,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;BackupResponse&gt; GetCustomFeatureFlagsForAuser(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;BackupResponse&gt; GetCustomFeatureFlagsForAUser(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -1058,7 +1058,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.User.GetCustomFeatureFlagsForAuser();
+    var response = await client.User.GetCustomFeatureFlagsForAUser();
     // TODO: Handle 'response' of type BackupResponse
 }
 catch (SdkException<RawError> ex)
@@ -1088,7 +1088,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;MeResponse&gt; GetSummaryOfAuserSaccount(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;MeResponse&gt; GetSummaryOfAUserSAccount(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -1101,7 +1101,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.User.GetSummaryOfAuserSaccount();
+    var response = await client.User.GetSummaryOfAUserSAccount();
     // TODO: Handle 'response' of type MeResponse
 }
 catch (SdkException<RawError> ex)
@@ -1131,7 +1131,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;RegionResponse&gt; GetUserSregionAndFleetApiBaseUrl(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;RegionResponse&gt; GetUserSRegionAndFleetApiBaseUrl(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -1144,7 +1144,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.User.GetUserSregionAndFleetApiBaseUrl();
+    var response = await client.User.GetUserSRegionAndFleetApiBaseUrl();
     // TODO: Handle 'response' of type RegionResponse
 }
 catch (SdkException<RawError> ex)
@@ -1577,7 +1577,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;CommandResponse&gt; ClearPintoDriveAdmin(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;CommandResponse&gt; ClearPiNtoDriveAdmin(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -1600,7 +1600,7 @@ Deactivates PIN to Drive and resets the associated PIN for supported firmware ve
 ```csharp
 try
 {
-    var response = await client.VehicleCommands.ClearPintoDriveAdmin(vehicleTag);
+    var response = await client.VehicleCommands.ClearPiNtoDriveAdmin(vehicleTag);
     // TODO: Handle 'response' of type CommandResponse
 }
 catch (SdkException<RawError> ex)
@@ -2547,7 +2547,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;DriversResponse&gt; GetAllowedDriversForAvehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;DriversResponse&gt; GetAllowedDriversForAVehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -2560,7 +2560,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.Vehicles.GetAllowedDriversForAvehicle(vehicleTag);
+    var response = await client.Vehicles.GetAllowedDriversForAVehicle(vehicleTag);
     // TODO: Handle 'response' of type DriversResponse
 }
 catch (SdkException<RawError> ex)
@@ -2712,7 +2712,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; GetEnterpriseRolesForAvehicle(string vin, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; GetEnterpriseRolesForAVehicle(string vin, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -2725,7 +2725,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.Vehicles.GetEnterpriseRolesForAvehicle(vin);
+    var response = await client.Vehicles.GetEnterpriseRolesForAVehicle(vin);
     // TODO: Handle 'response' of type object
 }
 catch (SdkException<RawError> ex)
@@ -2877,7 +2877,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; GetFleetTelemetryErrorsForAvehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; GetFleetTelemetryErrorsForAVehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -2890,7 +2890,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.Vehicles.GetFleetTelemetryErrorsForAvehicle(vehicleTag);
+    var response = await client.Vehicles.GetFleetTelemetryErrorsForAVehicle(vehicleTag);
     // TODO: Handle 'response' of type object
 }
 catch (SdkException<RawError> ex)
@@ -3140,7 +3140,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SimpleOkResponse&gt; RemoveDriverAccessFromAvehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SimpleOkResponse&gt; RemoveDriverAccessFromAVehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -3153,7 +3153,7 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.Vehicles.RemoveDriverAccessFromAvehicle(vehicleTag);
+    var response = await client.Vehicles.RemoveDriverAccessFromAVehicle(vehicleTag);
     // TODO: Handle 'response' of type SimpleOkResponse
 }
 catch (SdkException<RawError> ex)

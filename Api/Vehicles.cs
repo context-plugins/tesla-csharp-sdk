@@ -103,7 +103,7 @@ public sealed class Vehicles
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="DriversResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<DriversResponse> GetAllowedDriversForAvehicle(string vehicleTag,
+    public Task<DriversResponse> GetAllowedDriversForAVehicle(string vehicleTag,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/vehicles/{vehicle_tag}/drivers"),
@@ -172,7 +172,7 @@ public sealed class Vehicles
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<object> GetEnterpriseRolesForAvehicle(string vin,
+    public Task<object> GetEnterpriseRolesForAVehicle(string vin,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/dx/enterprise/v1/{vin}/roles"),
@@ -241,7 +241,7 @@ public sealed class Vehicles
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<object> GetFleetTelemetryErrorsForAvehicle(string vehicleTag,
+    public Task<object> GetFleetTelemetryErrorsForAVehicle(string vehicleTag,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/vehicles/{vehicle_tag}/fleet_telemetry_errors"),
@@ -354,7 +354,7 @@ public sealed class Vehicles
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SimpleOkResponse"/> instance.</returns>
     /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
-    public Task<SimpleOkResponse> RemoveDriverAccessFromAvehicle(string vehicleTag,
+    public Task<SimpleOkResponse> RemoveDriverAccessFromAVehicle(string vehicleTag,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/1/vehicles/{vehicle_tag}/drivers"),
