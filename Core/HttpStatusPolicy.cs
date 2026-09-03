@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
-namespace Tesla.Core;
+namespace TeslaFleetManagementApi.Core;
 
 internal sealed class HttpStatusPolicy
 {

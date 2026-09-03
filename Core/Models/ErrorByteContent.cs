@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http.Headers;
 
-namespace Tesla.Core.Models;
+namespace TeslaFleetManagementApi.Core.Models;
 
 public sealed class ErrorByteContent
 {

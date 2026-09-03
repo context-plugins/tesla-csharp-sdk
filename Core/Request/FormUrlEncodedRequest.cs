@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using Tesla.Core.Models;
+using TeslaFleetManagementApi.Core.Models;
 
-namespace Tesla.Core.Request;
+namespace TeslaFleetManagementApi.Core.Request;
 
 internal sealed class FormUrlEncodedRequest : IRequest
 {

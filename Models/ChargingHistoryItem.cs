@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using Tesla.Core.Models;
+using TeslaFleetManagementApi.Core.Models;
 
-namespace Tesla.Models;
+namespace TeslaFleetManagementApi.Models;
 
 public record ChargingHistoryItem
 {

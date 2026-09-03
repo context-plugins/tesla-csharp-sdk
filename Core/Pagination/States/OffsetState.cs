@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http.Headers;
 
-namespace Tesla.Core.Pagination.States;
+namespace TeslaFleetManagementApi.Core.Pagination.States;
 
 internal sealed record OffsetState<TResponse> : IPageState<TResponse, OffsetState<TResponse>>
 {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Tesla.Core.Extensions;
+namespace TeslaFleetManagementApi.Core.Extensions;
 
 internal static class CollectionExtensions
 {

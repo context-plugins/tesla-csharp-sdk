@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Tesla.Core.Enum;
+using TeslaFleetManagementApi.Core.Enum;
 
-namespace Tesla.Core.Authentication.OAuth2.AuthorizationCode;
+namespace TeslaFleetManagementApi.Core.Authentication.OAuth2.AuthorizationCode;
 
 [JsonConverter(typeof(StringEnumConverter<PkceMethod>))]
 public sealed record PkceMethod : StringEnum<PkceMethod>

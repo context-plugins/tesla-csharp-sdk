@@ -1,9 +1,9 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Tesla.Core.Extensions;
+using TeslaFleetManagementApi.Core.Extensions;
 
-namespace Tesla.Core.Converters;
+namespace TeslaFleetManagementApi.Core.Converters;
 
 internal sealed class Iso8601DateTimeOffsetConverter : JsonConverter<DateTimeOffset>
 {

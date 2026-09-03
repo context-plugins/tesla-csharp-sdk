@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tesla.Core;
+namespace TeslaFleetManagementApi.Core;
 
 internal sealed class AsyncLock
 {

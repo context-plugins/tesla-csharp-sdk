@@ -1,9 +1,9 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Tesla.Core.Models;
+using TeslaFleetManagementApi.Core.Models;
 
-namespace Tesla.Core.Response;
+namespace TeslaFleetManagementApi.Core.Response;
 
 internal sealed class ErrorByteResponse : IResponse<ErrorByteContent>
 {

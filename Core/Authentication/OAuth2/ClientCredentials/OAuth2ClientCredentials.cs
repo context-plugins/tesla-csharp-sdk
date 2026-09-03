@@ -1,4 +1,4 @@
-namespace Tesla.Core.Authentication.OAuth2.ClientCredentials;
+namespace TeslaFleetManagementApi.Core.Authentication.OAuth2.ClientCredentials;
 
 public sealed class OAuth2ClientCredentials
 {

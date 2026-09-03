@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Tesla.Core.Webhooks.Signing;
+namespace TeslaFleetManagementApi.Core.Webhooks.Signing;
 
 internal sealed class SignatureVerifier
 {

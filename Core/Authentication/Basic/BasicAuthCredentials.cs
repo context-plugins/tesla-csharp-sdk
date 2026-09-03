@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace Tesla.Core.Authentication.Basic;
+namespace TeslaFleetManagementApi.Core.Authentication.Basic;
 
 public sealed class BasicAuthCredentials
 {

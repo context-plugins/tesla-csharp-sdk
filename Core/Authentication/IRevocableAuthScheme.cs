@@ -1,4 +1,4 @@
-namespace Tesla.Core.Authentication;
+namespace TeslaFleetManagementApi.Core.Authentication;
 
 /// <summary>
 /// Implemented by auth schemes that maintain cached credential state (e.g., an OAuth2 access token)

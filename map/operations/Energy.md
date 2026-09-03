@@ -8,6 +8,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### AdjustSiteSBackupReserve
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `AdjustSiteSBackupReserve(string energySiteId, BackupRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `BackupResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -19,6 +20,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### AdjustSiteSOffGridVehicleChargingReserve
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `AdjustSiteSOffGridVehicleChargingReserve(string energySiteId, OffGridVehicleChargingReserveRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `GenericUpdateResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -30,6 +32,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### AllowDisallowChargingFromTheGridAndExportingEnergyToTheGrid
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `AllowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(string energySiteId, object? body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `body` — nullable, no default → **must pass explicitly**
 - **Returns**: `GenericUpdateResponse`
@@ -41,6 +44,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### GetBackupOrEnergyHistory
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetBackupOrEnergyHistory(string energySiteId, Kind kind, DateTimeOffset startDate, DateTimeOffset endDate, string? period, string? timeZone, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `period` — nullable, no default → **must pass explicitly**
   - `timeZone` — nullable, no default → **must pass explicitly**
@@ -55,6 +59,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### GetLiveSiteStatus
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetLiveSiteStatus(string energySiteId, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `LiveStatusResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -65,6 +70,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### GetSiteInformationAssetsSettingsFeatures
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetSiteInformationAssetsSettingsFeatures(string energySiteId, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `SiteInfoResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -75,6 +81,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### GetUserProductsVehiclesEnergySites
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetUserProductsVehiclesEnergySites(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `ProductsResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -85,6 +92,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### GetWallConnectorChargingHistory
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetWallConnectorChargingHistory(string energySiteId, KindGetWallConnectorChargingHistory kind, DateTimeOffset startDate, DateTimeOffset endDate, string? timeZone, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `timeZone` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `kind` ← `kind`, `start_date` ← `startDate`, `end_date` ← `endDate`, `time_zone` ← `timeZone`
@@ -98,6 +106,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### SetSiteModeAutonomousOrSelfConsumption
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `SetSiteModeAutonomousOrSelfConsumption(string energySiteId, OperationRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `GenericUpdateResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -109,6 +118,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### UpdateStormWatchParticipation
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `UpdateStormWatchParticipation(string energySiteId, StormModeRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `GenericUpdateResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -120,6 +130,7 @@ Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
 
 ### UpdateTimeOfUseTouSettings
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `UpdateTimeOfUseTouSettings(string energySiteId, TimeOfUseSettingsRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `GenericUpdateResponse`
 - **Error**: `SdkException<RawError>` — **Case B**

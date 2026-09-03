@@ -1,6 +1,6 @@
 # Reference
 
-> Source: [TeslaClient](TeslaClient.cs)
+> Source: [TeslaFleetManagementApiClient](TeslaFleetManagementApiClient.cs)
 
 ## Charging
 

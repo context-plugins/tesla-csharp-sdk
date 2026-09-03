@@ -8,6 +8,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### ConfigureFleetTelemetryUsingSignedJwsToken
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `ConfigureFleetTelemetryUsingSignedJwsToken(FleetTelemetryJwsRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `object`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -18,18 +19,21 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### CreateOrUpdateFleetTelemetryConfiguration
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `CreateOrUpdateFleetTelemetryConfiguration(object body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `object`
 - **Error**: `SdkException<RawError>` — **Case B**
 
 ### DeleteFleetTelemetryConfiguration
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `DeleteFleetTelemetryConfiguration(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `object`
 - **Error**: `SdkException<RawError>` — **Case B**
 
 ### GetAllowedDriversForAVehicle
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetAllowedDriversForAVehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `DriversResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -40,6 +44,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### GetEligibleVehicleSubscriptions
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetEligibleVehicleSubscriptions(string vin, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Query params (wire ← C#)**: `vin` ← `vin`
 - **Returns**: `SiteInfoResponse`
@@ -51,6 +56,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### GetEligibleVehicleUpgrades
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetEligibleVehicleUpgrades(string vin, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Query params (wire ← C#)**: `vin` ← `vin`
 - **Returns**: `SiteInfoResponse`
@@ -62,12 +68,14 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### GetEnterpriseRolesForAVehicle
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetEnterpriseRolesForAVehicle(string vin, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `object`
 - **Error**: `SdkException<RawError>` — **Case B**
 
 ### GetFleetStatusForVehicles
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetFleetStatusForVehicles(FleetStatusRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `object`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -78,18 +86,21 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### GetFleetTelemetryConfiguration
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetFleetTelemetryConfiguration(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `object`
 - **Error**: `SdkException<RawError>` — **Case B**
 
 ### GetFleetTelemetryErrorsForAVehicle
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetFleetTelemetryErrorsForAVehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `object`
 - **Error**: `SdkException<RawError>` — **Case B**
 
 ### GetVehicle
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetVehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `Api1VehiclesResponseResponse200`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -100,6 +111,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### ListVehicles
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `ListVehicles(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `Api1VehiclesResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -110,6 +122,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### MobileEnabled
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `MobileEnabled(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `Api1VehiclesMobileEnabledResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -120,6 +133,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### NearbyChargingSites
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `NearbyChargingSites(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `Api1VehiclesNearbyChargingSitesResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -130,6 +144,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### RemoveDriverAccessFromAVehicle
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `RemoveDriverAccessFromAVehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `SimpleOkResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -140,6 +155,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### SetEnterprisePayerRoles
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `SetEnterprisePayerRoles(string vin, EnterprisePayerRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `void` (Task)
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -150,6 +166,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### VehicleLiveData
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `VehicleLiveData(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `SiteInfoResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -160,6 +177,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### VehicleOptions
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `VehicleOptions(string vin, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Query params (wire ← C#)**: `vin` ← `vin`
 - **Returns**: `Api1DxVehiclesOptionsResponse`
@@ -171,6 +189,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### VehicleSpecs
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `VehicleSpecs(string vin, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `SiteInfoResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -181,6 +200,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### WakeUpVehicle
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `WakeUpVehicle(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `Api1VehiclesWakeUpResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -191,6 +211,7 @@ Accessor: `client.Vehicles` · Source: `Api/Vehicles.cs` · 21 operations
 
 ### WarrantyDetails
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `WarrantyDetails(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `Api1DxWarrantyDetailsResponse`
 - **Error**: `SdkException<RawError>` — **Case B**

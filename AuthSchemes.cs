@@ -1,11 +1,11 @@
-using Tesla.Core;
-using Tesla.Core.Authentication;
-using Tesla.Core.Authentication.Bearer;
-using Tesla.Core.Authentication.OAuth2;
-using Tesla.Core.Authentication.OAuth2.AuthorizationCode;
-using Tesla.Core.Authentication.OAuth2.ClientCredentials;
+using TeslaFleetManagementApi.Core;
+using TeslaFleetManagementApi.Core.Authentication;
+using TeslaFleetManagementApi.Core.Authentication.Bearer;
+using TeslaFleetManagementApi.Core.Authentication.OAuth2;
+using TeslaFleetManagementApi.Core.Authentication.OAuth2.AuthorizationCode;
+using TeslaFleetManagementApi.Core.Authentication.OAuth2.ClientCredentials;
 
-namespace Tesla;
+namespace TeslaFleetManagementApi;
 
 internal sealed class AuthSchemes
 {
@@ -13,7 +13,10 @@ internal sealed class AuthSchemes
     public IAuthScheme ThirdpartytokenClientCredentials { get; }
     public IAuthScheme ThirdpartytokenAuthorizationCode { get; }
 
-    public AuthSchemes(TeslaClientOptions options, Server server, RawClient rawClient, UriFactory urlFactory)
+    public AuthSchemes(TeslaFleetManagementApiClientOptions options,
+        Server server,
+        RawClient rawClient,
+        UriFactory urlFactory)
     {
         BearerAuth = BearerAuthScheme.Create(options.BearerAuth);
         ThirdpartytokenClientCredentials =

@@ -8,6 +8,7 @@ Accessor: `client.Charging` · Source: `Api/Charging.cs` · 3 operations
 
 ### GetChargingHistory
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetChargingHistory(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `ChargingHistoryResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -18,12 +19,14 @@ Accessor: `client.Charging` · Source: `Api/Charging.cs` · 3 operations
 
 ### GetChargingInvoice
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetChargingInvoice(string id, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `void` (Task)
 - **Error**: `SdkException<RawError>` — **Case B**
 
 ### GetChargingSessions
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `GetChargingSessions(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `ChargingSessionsResponse`
 - **Error**: `SdkException<RawError>` — **Case B**

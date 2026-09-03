@@ -7,10 +7,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using Tesla.Core.Exceptions;
-using Tesla.Core.Extensions;
+using TeslaFleetManagementApi.Core.Exceptions;
+using TeslaFleetManagementApi.Core.Extensions;
 
-namespace Tesla.Core.Response;
+namespace TeslaFleetManagementApi.Core.Response;
 
 internal sealed class JsonSseResponse<TResponse> : IResponse<IAsyncEnumerable<TResponse>>
 {

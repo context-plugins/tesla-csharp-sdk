@@ -8,6 +8,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Actuatetrunk
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Actuatetrunk(string vehicleTag, ActuateTrunkRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -19,6 +20,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Addchargeschedule
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Addchargeschedule(string vehicleTag, AddChargeScheduleRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -30,6 +32,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Addpreconditionschedule
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Addpreconditionschedule(string vehicleTag, AddPreconditionScheduleRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -41,6 +44,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Adjustmediavolume
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Adjustmediavolume(string vehicleTag, AdjustVolumeRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -52,6 +56,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Cancelsoftwareupdate
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Cancelsoftwareupdate(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -62,6 +67,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Chargemaxrange
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Chargemaxrange(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -72,6 +78,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Chargestandard
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Chargestandard(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -82,6 +89,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### ClearPiNtoDriveAdmin
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `ClearPiNtoDriveAdmin(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -92,6 +100,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Closechargeportdoor
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Closechargeportdoor(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -102,6 +111,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### EnableordisableGuestMode
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `EnableordisableGuestMode(string vehicleTag, GuestModeRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -113,6 +123,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Eraseuserdata
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Eraseuserdata(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -123,6 +134,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Flashlights
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Flashlights(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -133,6 +145,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Honkhorn
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Honkhorn(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -143,6 +156,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Lockdoors
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Lockdoors(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -153,6 +167,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Nextfavoritemediatrack
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Nextfavoritemediatrack(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -163,6 +178,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Openchargeportdoor
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Openchargeportdoor(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -173,6 +189,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Startcharging
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Startcharging(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -183,6 +200,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Startclimatepreconditioning
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Startclimatepreconditioning(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -193,6 +211,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Stopcharging
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Stopcharging(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -203,6 +222,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Stopclimatepreconditioning
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Stopclimatepreconditioning(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -213,6 +233,7 @@ Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 ope
 
 ### Unlockdoors
 
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
 - **Signature**: `Unlockdoors(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `CommandResponse`
 - **Error**: `SdkException<RawError>` — **Case B**

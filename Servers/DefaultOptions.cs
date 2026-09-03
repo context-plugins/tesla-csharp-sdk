@@ -1,6 +1,6 @@
-using Tesla.Core.Models;
+using TeslaFleetManagementApi.Core.Models;
 
-namespace Tesla.Servers;
+namespace TeslaFleetManagementApi.Servers;
 
 public class DefaultOptions
 {

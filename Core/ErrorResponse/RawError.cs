@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tesla.Core.ErrorResponse;
+namespace TeslaFleetManagementApi.Core.ErrorResponse;
 
 public sealed class RawError
 {

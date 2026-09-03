@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using Tesla.Core.Models;
+using TeslaFleetManagementApi.Core.Models;
 
-namespace Tesla.Core;
+namespace TeslaFleetManagementApi.Core;
 
 internal static class ParameterFlattener
 {

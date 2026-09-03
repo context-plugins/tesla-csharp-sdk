@@ -1,33 +1,37 @@
 using System.Net.Http;
-using Tesla.Api;
-using Tesla.Core;
-using Tesla.Core.Logging;
-using Tesla.Core.Models;
+using TeslaFleetManagementApi.Api;
+using TeslaFleetManagementApi.Core;
+using TeslaFleetManagementApi.Core.Logging;
+using TeslaFleetManagementApi.Core.Models;
 
-namespace Tesla;
+namespace TeslaFleetManagementApi;
 
 /// <summary>
 /// Unofficial OpenAPI specification for Tesla Fleet Management Charging endpoints.
 /// </summary>
-public sealed class TeslaClient
+public sealed class TeslaFleetManagementApiClient
 {
-    public TeslaClient(HttpClient httpClient, TeslaClientOptions options)
+    private readonly RawClient _rawClient;
+    private readonly Server _server;
+    private readonly AuthSchemes _auth;
+
+    public TeslaFleetManagementApiClient(HttpClient httpClient, TeslaFleetManagementApiClientOptions options)
     {
-        var server = new Server(options.Environment, options.Server);
+        _server = new Server(options.Environment, options.Server);
         var queryParameterFactory = new QueryParameterFactory([]);
         var templateParamsFactory = new TemplateParamsFactory([]);
         var urlFactory = new UriFactory(queryParameterFactory, templateParamsFactory);
         var httpStatusPolicy = new HttpStatusPolicy([]);
         var headersFactory =
-            new HeadersFactory([new HeaderParam("User-Agent", "TeslaClient/1.0.0 CSharp"),
+            new HeadersFactory([new HeaderParam("User-Agent", "TeslaFleetManagementApiClient/1.0.0 CSharp"),
                     new HeaderParam("X-APIMatic-Lang", "CSharp"),
                     new HeaderParam("X-APIMatic-Package-Version", "1.0.0"),
                     new HeaderParam("X-APIMatic-Gen-Version", "4.0.0"),
                     new HeaderParam("X-APIMatic-OS", RuntimeEnvironment.Os),
                     new HeaderParam("X-APIMatic-Runtime", RuntimeEnvironment.Runtime)]);
         var resiliencePipelineFactory = new ResiliencePipelineFactory(options.Retry);
-        var httpLogger = new HttpLogger(options.Logging, "TeslaClient");
-        var rawClient =
+        var httpLogger = new HttpLogger(options.Logging, "TeslaFleetManagementApiClient");
+        _rawClient =
             new RawClient(httpClient,
                 urlFactory,
                 httpStatusPolicy,
@@ -35,39 +39,33 @@ public sealed class TeslaClient
                 resiliencePipelineFactory,
                 httpLogger,
                 options.Hooks);
-        var auth = new AuthSchemes(options, server, rawClient, urlFactory);
-        Charging = new Charging(rawClient, server, auth);
-        Energy = new Energy(rawClient, server, auth);
-        Partner = new Partner(rawClient, server, auth);
-        User = new User(rawClient, server, auth);
-        VehicleCommands = new VehicleCommands(rawClient, server, auth);
-        Vehicles = new Vehicles(rawClient, server, auth);
+        _auth = new AuthSchemes(options, _server, _rawClient, urlFactory);
     }
 
     /// <summary>
     /// Charging history, invoices, and session data
     /// </summary>
-    public Charging Charging { get; }
+    public Charging Charging => field ??= new Charging(_rawClient, _server, _auth);
 
     /// <summary>
     /// Energy site and Powerwall endpoints
     /// </summary>
-    public Energy Energy { get; }
+    public Energy Energy => field ??= new Energy(_rawClient, _server, _auth);
 
     /// <summary>
     /// Partner account and telemetry endpoints
     /// </summary>
-    public Partner Partner { get; }
+    public Partner Partner => field ??= new Partner(_rawClient, _server, _auth);
 
     /// <summary>
     /// User account and settings endpoints
     /// </summary>
-    public User User { get; }
+    public User User => field ??= new User(_rawClient, _server, _auth);
 
     /// <summary>
     /// Commands that control vehicle behavior
     /// </summary>
-    public VehicleCommands VehicleCommands { get; }
+    public VehicleCommands VehicleCommands => field ??= new VehicleCommands(_rawClient, _server, _auth);
 
-    public Vehicles Vehicles { get; }
+    public Vehicles Vehicles => field ??= new Vehicles(_rawClient, _server, _auth);
 }

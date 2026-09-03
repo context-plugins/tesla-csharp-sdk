@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tesla.Core.Authentication.Basic;
+namespace TeslaFleetManagementApi.Core.Authentication.Basic;
 
 internal sealed class BasicAuthScheme : IAuthScheme
 {

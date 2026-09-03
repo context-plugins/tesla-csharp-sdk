@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Tesla.Core.Exceptions;
+using TeslaFleetManagementApi.Core.Exceptions;
 
-namespace Tesla.Core.Authentication;
+namespace TeslaFleetManagementApi.Core.Authentication;
 
 /// <summary>
 /// Represents multiple alternative schemes (OR logic).

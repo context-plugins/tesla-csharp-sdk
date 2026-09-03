@@ -5,9 +5,9 @@ using System.Net.ServerSentEvents;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Tesla.Core.Exceptions;
+using TeslaFleetManagementApi.Core.Exceptions;
 
-namespace Tesla.Core.Response;
+namespace TeslaFleetManagementApi.Core.Response;
 
 internal static class SseFrameReader
 {

@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace Tesla.Core.Extensions;
+namespace TeslaFleetManagementApi.Core.Extensions;
 
 internal static class HttpContentExtension
 {

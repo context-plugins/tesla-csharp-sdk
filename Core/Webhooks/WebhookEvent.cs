@@ -1,6 +1,6 @@
-using Tesla.Core.Enum;
+using TeslaFleetManagementApi.Core.Enum;
 
-namespace Tesla.Core.Webhooks;
+namespace TeslaFleetManagementApi.Core.Webhooks;
 
 public abstract record WebhookEvent<TPayload>
 {

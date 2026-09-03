@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace Tesla.Core.Webhooks.Signing;
+namespace TeslaFleetManagementApi.Core.Webhooks.Signing;
 
 internal abstract record SignatureAlgorithm
 {

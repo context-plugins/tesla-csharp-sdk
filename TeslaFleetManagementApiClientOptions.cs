@@ -1,14 +1,14 @@
 using System.Collections.Generic;
-using Tesla.Core.Authentication.OAuth2;
-using Tesla.Core.Authentication.OAuth2.AuthorizationCode;
-using Tesla.Core.Authentication.OAuth2.ClientCredentials;
-using Tesla.Core.Configuration;
-using Tesla.Core.Hooks;
-using Tesla.Servers;
+using TeslaFleetManagementApi.Core.Authentication.OAuth2;
+using TeslaFleetManagementApi.Core.Authentication.OAuth2.AuthorizationCode;
+using TeslaFleetManagementApi.Core.Authentication.OAuth2.ClientCredentials;
+using TeslaFleetManagementApi.Core.Configuration;
+using TeslaFleetManagementApi.Core.Hooks;
+using TeslaFleetManagementApi.Servers;
 
-namespace Tesla;
+namespace TeslaFleetManagementApi;
 
-public class TeslaClientOptions
+public class TeslaFleetManagementApiClientOptions
 {
     public ServerEnvironment Environment { get; set; } = ServerEnvironment.Default();
     public RetryOptions Retry { get; set; } = RetryOptions.Default();

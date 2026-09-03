@@ -2,16 +2,16 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Tesla.Core;
-using Tesla.Core.Authentication;
-using Tesla.Core.ErrorResponse;
-using Tesla.Core.Exceptions;
-using Tesla.Core.Models;
-using Tesla.Core.Request;
-using Tesla.Core.Response;
-using Tesla.Models;
+using TeslaFleetManagementApi.Core;
+using TeslaFleetManagementApi.Core.Authentication;
+using TeslaFleetManagementApi.Core.ErrorResponse;
+using TeslaFleetManagementApi.Core.Exceptions;
+using TeslaFleetManagementApi.Core.Models;
+using TeslaFleetManagementApi.Core.Request;
+using TeslaFleetManagementApi.Core.Response;
+using TeslaFleetManagementApi.Models;
 
-namespace Tesla.Api;
+namespace TeslaFleetManagementApi.Api;
 
 /// <summary>
 /// Commands that control vehicle behavior

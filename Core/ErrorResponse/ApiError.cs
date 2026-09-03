@@ -2,10 +2,10 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Tesla.Core.Models;
-using Tesla.Core.Response;
+using TeslaFleetManagementApi.Core.Models;
+using TeslaFleetManagementApi.Core.Response;
 
-namespace Tesla.Core.ErrorResponse;
+namespace TeslaFleetManagementApi.Core.ErrorResponse;
 
 public abstract class ApiError
 {

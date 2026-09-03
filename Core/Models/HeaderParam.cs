@@ -1,3 +1,3 @@
-namespace Tesla.Core.Models;
+namespace TeslaFleetManagementApi.Core.Models;
 
 public readonly record struct HeaderParam(string Key, object? Value);

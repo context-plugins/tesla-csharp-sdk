@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
 
-namespace Tesla.Core.Validation;
+namespace TeslaFleetManagementApi.Core.Validation;
 
 internal static class SchemaConstraintExtensions
 {

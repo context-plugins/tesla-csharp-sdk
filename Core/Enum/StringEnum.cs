@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-namespace Tesla.Core.Enum;
+namespace TeslaFleetManagementApi.Core.Enum;
 
 public abstract record StringEnum<TEnum> : TypedEnum<string, TEnum> where TEnum : StringEnum<TEnum>
 {

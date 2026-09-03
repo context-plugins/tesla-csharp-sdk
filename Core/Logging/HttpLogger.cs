@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Tesla.Core.Configuration;
+using TeslaFleetManagementApi.Core.Configuration;
 
-namespace Tesla.Core.Logging;
+namespace TeslaFleetManagementApi.Core.Logging;
 
 internal sealed class HttpLogger
 {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tesla.Core.Request;
+namespace TeslaFleetManagementApi.Core.Request;
 
 internal sealed class NonDisposingStream : Stream
 {

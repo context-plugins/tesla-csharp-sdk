@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Tesla.Core;
+namespace TeslaFleetManagementApi.Core;
 
 internal static class RuntimeEnvironment
 {

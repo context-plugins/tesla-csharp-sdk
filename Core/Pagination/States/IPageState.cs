@@ -1,6 +1,6 @@
 using System.Net.Http.Headers;
 
-namespace Tesla.Core.Pagination.States;
+namespace TeslaFleetManagementApi.Core.Pagination.States;
 
 internal interface IPageState<in TResponse, out TState>
 {

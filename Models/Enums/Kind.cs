@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Tesla.Core.Enum;
+using TeslaFleetManagementApi.Core.Enum;
 
-namespace Tesla.Models.Enums;
+namespace TeslaFleetManagementApi.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<Kind>))]
 public sealed record Kind : StringEnum<Kind>

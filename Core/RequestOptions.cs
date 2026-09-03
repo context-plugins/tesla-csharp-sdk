@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
-using Tesla.Core.Hooks;
+using TeslaFleetManagementApi.Core.Hooks;
 
-namespace Tesla.Core;
+namespace TeslaFleetManagementApi.Core;
 
 public sealed record RequestOptions
 {

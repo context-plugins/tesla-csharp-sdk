@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace Tesla.Core.Request;
+namespace TeslaFleetManagementApi.Core.Request;
 
 internal interface IRequest
 {

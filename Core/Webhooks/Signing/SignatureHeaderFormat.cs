@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tesla.Core.Webhooks.Signing;
+namespace TeslaFleetManagementApi.Core.Webhooks.Signing;
 
 internal abstract record SignatureHeaderFormat
 {

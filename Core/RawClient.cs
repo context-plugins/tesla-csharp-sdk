@@ -6,18 +6,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using Polly;
 using Polly.Timeout;
-using Tesla.Core.Authentication;
-using Tesla.Core.ErrorResponse;
-using Tesla.Core.Extensions;
-using Tesla.Core.Hooks;
-using Tesla.Core.Logging;
-using Tesla.Core.Models;
-using Tesla.Core.Pagination;
-using Tesla.Core.Pagination.States;
-using Tesla.Core.Request;
-using Tesla.Core.Response;
+using TeslaFleetManagementApi.Core.Authentication;
+using TeslaFleetManagementApi.Core.ErrorResponse;
+using TeslaFleetManagementApi.Core.Extensions;
+using TeslaFleetManagementApi.Core.Hooks;
+using TeslaFleetManagementApi.Core.Logging;
+using TeslaFleetManagementApi.Core.Models;
+using TeslaFleetManagementApi.Core.Pagination;
+using TeslaFleetManagementApi.Core.Pagination.States;
+using TeslaFleetManagementApi.Core.Request;
+using TeslaFleetManagementApi.Core.Response;
 
-namespace Tesla.Core;
+namespace TeslaFleetManagementApi.Core;
 
 internal sealed class RawClient
 {

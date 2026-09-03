@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tesla.Core.ErrorResponse;
+namespace TeslaFleetManagementApi.Core.ErrorResponse;
 
 public interface IErrorResponse<TError>
 {
