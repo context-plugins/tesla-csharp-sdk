@@ -2,243 +2,285 @@
 
 # VehicleCommands — operations
 
-Accessor: `client.VehicleCommands` · Source: `Api/VehicleCommands.cs` · 21 operations
+Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/VehicleCommands.cs` · 21 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
 ### Actuatetrunk
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Actuatetrunk(string vehicleTag, ActuateTrunkRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Actuatetrunk(ActuatetrunkOperationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `ActuateTrunkRequest` | `Models/ActuateTrunkRequest.cs` |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `ActuatetrunkOperationRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/ActuatetrunkOperationRequest.cs` |
+| `ActuateTrunkRequest` | `src/TeslaFleetManagementApi/Models/ActuateTrunkRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Addchargeschedule
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Addchargeschedule(string vehicleTag, AddChargeScheduleRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Addchargeschedule(AddchargescheduleOperationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `AddChargeScheduleRequest` | `Models/AddChargeScheduleRequest.cs` |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `AddchargescheduleOperationRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/AddchargescheduleOperationRequest.cs` |
+| `AddChargeScheduleRequest` | `src/TeslaFleetManagementApi/Models/AddChargeScheduleRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Addpreconditionschedule
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Addpreconditionschedule(string vehicleTag, AddPreconditionScheduleRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Addpreconditionschedule(AddpreconditionscheduleOperationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `AddPreconditionScheduleRequest` | `Models/AddPreconditionScheduleRequest.cs` |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `AddpreconditionscheduleOperationRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/AddpreconditionscheduleOperationRequest.cs` |
+| `AddPreconditionScheduleRequest` | `src/TeslaFleetManagementApi/Models/AddPreconditionScheduleRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Adjustmediavolume
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Adjustmediavolume(string vehicleTag, AdjustVolumeRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Adjustmediavolume(AdjustmediavolumeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `AdjustVolumeRequest` | `Models/AdjustVolumeRequest.cs` |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `AdjustmediavolumeRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/AdjustmediavolumeRequest.cs` |
+| `AdjustVolumeRequest` | `src/TeslaFleetManagementApi/Models/AdjustVolumeRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Cancelsoftwareupdate
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Cancelsoftwareupdate(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Cancelsoftwareupdate(CancelsoftwareupdateRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `CancelsoftwareupdateRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/CancelsoftwareupdateRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Chargemaxrange
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Chargemaxrange(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Chargemaxrange(ChargemaxrangeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `ChargemaxrangeRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/ChargemaxrangeRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Chargestandard
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Chargestandard(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Chargestandard(ChargestandardRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `ChargestandardRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/ChargestandardRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### ClearPiNtoDriveAdmin
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `ClearPiNtoDriveAdmin(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `ClearPiNtoDriveAdmin(ClearPiNtoDriveAdminRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `ClearPiNtoDriveAdminRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/ClearPiNtoDriveAdminRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Closechargeportdoor
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Closechargeportdoor(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Closechargeportdoor(ClosechargeportdoorRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `ClosechargeportdoorRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/ClosechargeportdoorRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### EnableordisableGuestMode
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `EnableordisableGuestMode(string vehicleTag, GuestModeRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `EnableordisableGuestMode(EnableordisableGuestModeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `GuestModeRequest` | `Models/GuestModeRequest.cs` |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `EnableordisableGuestModeRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/EnableordisableGuestModeRequest.cs` |
+| `GuestModeRequest` | `src/TeslaFleetManagementApi/Models/GuestModeRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Eraseuserdata
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Eraseuserdata(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Eraseuserdata(EraseuserdataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `EraseuserdataRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/EraseuserdataRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Flashlights
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Flashlights(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Flashlights(FlashlightsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `FlashlightsRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/FlashlightsRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Honkhorn
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Honkhorn(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Honkhorn(HonkhornRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `HonkhornRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/HonkhornRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Lockdoors
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Lockdoors(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Lockdoors(LockdoorsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `LockdoorsRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/LockdoorsRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Nextfavoritemediatrack
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Nextfavoritemediatrack(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Nextfavoritemediatrack(NextfavoritemediatrackRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `NextfavoritemediatrackRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/NextfavoritemediatrackRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Openchargeportdoor
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Openchargeportdoor(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Openchargeportdoor(OpenchargeportdoorRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `OpenchargeportdoorRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/OpenchargeportdoorRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Startcharging
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Startcharging(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Startcharging(StartchargingRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `StartchargingRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/StartchargingRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Startclimatepreconditioning
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Startclimatepreconditioning(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Startclimatepreconditioning(StartclimatepreconditioningRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `StartclimatepreconditioningRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/StartclimatepreconditioningRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Stopcharging
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Stopcharging(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Stopcharging(StopchargingRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `StopchargingRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/StopchargingRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Stopclimatepreconditioning
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Stopclimatepreconditioning(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Stopclimatepreconditioning(StopclimatepreconditioningRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `StopclimatepreconditioningRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/StopclimatepreconditioningRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 
 ### Unlockdoors
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `Unlockdoors(string vehicleTag, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `Unlockdoors(UnlockdoorsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `VehicleTag`
 - **Returns**: `CommandResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `CommandResponse` | `Models/CommandResponse.cs` |
+| `UnlockdoorsRequest` | `src/TeslaFleetManagementApi/Requests/VehicleCommands/UnlockdoorsRequest.cs` |
+| `CommandResponse` | `src/TeslaFleetManagementApi/Models/CommandResponse.cs` |
 

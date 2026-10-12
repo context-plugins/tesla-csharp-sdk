@@ -2,36 +2,41 @@
 
 # Charging — operations
 
-Accessor: `client.Charging` · Source: `Api/Charging.cs` · 3 operations
+Accessor: `client.Charging` · Source: `src/TeslaFleetManagementApi/Api/Charging.cs` · 3 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
 ### GetChargingHistory
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetChargingHistory(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetChargingHistory(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `ChargingHistoryResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `ChargingHistoryResponse` | `Models/ChargingHistoryResponse.cs` |
+| `ChargingHistoryResponse` | `src/TeslaFleetManagementApi/Models/ChargingHistoryResponse.cs` |
 
 ### GetChargingInvoice
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetChargingInvoice(string id, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetChargingInvoice(GetChargingInvoiceRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Id`
 - **Returns**: `void` (Task)
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
+
+| Type | Source |
+| --- | --- |
+| `GetChargingInvoiceRequest` | `src/TeslaFleetManagementApi/Requests/Charging/GetChargingInvoiceRequest.cs` |
 
 ### GetChargingSessions
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetChargingSessions(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetChargingSessions(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `ChargingSessionsResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `ChargingSessionsResponse` | `Models/ChargingSessionsResponse.cs` |
+| `ChargingSessionsResponse` | `src/TeslaFleetManagementApi/Models/ChargingSessionsResponse.cs` |
 

@@ -2,51 +2,51 @@
 
 # User — operations
 
-Accessor: `client.User` · Source: `Api/User.cs` · 4 operations
+Accessor: `client.User` · Source: `src/TeslaFleetManagementApi/Api/User.cs` · 4 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
 ### GetActiveOrdersForAUser
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetActiveOrdersForAUser(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetActiveOrdersForAUser(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `OrdersResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `OrdersResponse` | `Models/OrdersResponse.cs` |
+| `OrdersResponse` | `src/TeslaFleetManagementApi/Models/OrdersResponse.cs` |
 
 ### GetCustomFeatureFlagsForAUser
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetCustomFeatureFlagsForAUser(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetCustomFeatureFlagsForAUser(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `BackupResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `BackupResponse` | `Models/BackupResponse.cs` |
+| `BackupResponse` | `src/TeslaFleetManagementApi/Models/BackupResponse.cs` |
 
 ### GetSummaryOfAUserSAccount
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetSummaryOfAUserSAccount(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetSummaryOfAUserSAccount(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `MeResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `MeResponse` | `Models/MeResponse.cs` |
+| `MeResponse` | `src/TeslaFleetManagementApi/Models/MeResponse.cs` |
 
 ### GetUserSRegionAndFleetApiBaseUrl
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetUserSRegionAndFleetApiBaseUrl(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetUserSRegionAndFleetApiBaseUrl(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `RegionResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `RegionResponse` | `Models/RegionResponse.cs` |
+| `RegionResponse` | `src/TeslaFleetManagementApi/Models/RegionResponse.cs` |
 

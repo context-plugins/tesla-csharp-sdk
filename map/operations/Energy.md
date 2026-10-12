@@ -2,141 +2,157 @@
 
 # Energy — operations
 
-Accessor: `client.Energy` · Source: `Api/Energy.cs` · 11 operations
+Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs` · 11 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
 ### AdjustSiteSBackupReserve
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `AdjustSiteSBackupReserve(string energySiteId, BackupRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `AdjustSiteSBackupReserve(AdjustSiteSBackupReserveRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`, `Body`
 - **Returns**: `BackupResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `BackupRequest` | `Models/BackupRequest.cs` |
-| `BackupResponse` | `Models/BackupResponse.cs` |
+| `AdjustSiteSBackupReserveRequest` | `src/TeslaFleetManagementApi/Requests/Energy/AdjustSiteSBackupReserveRequest.cs` |
+| `BackupRequest` | `src/TeslaFleetManagementApi/Models/BackupRequest.cs` |
+| `BackupResponse` | `src/TeslaFleetManagementApi/Models/BackupResponse.cs` |
 
 ### AdjustSiteSOffGridVehicleChargingReserve
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `AdjustSiteSOffGridVehicleChargingReserve(string energySiteId, OffGridVehicleChargingReserveRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `AdjustSiteSOffGridVehicleChargingReserve(AdjustSiteSOffGridVehicleChargingReserveRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`, `Body`
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `OffGridVehicleChargingReserveRequest` | `Models/OffGridVehicleChargingReserveRequest.cs` |
-| `GenericUpdateResponse` | `Models/GenericUpdateResponse.cs` |
+| `AdjustSiteSOffGridVehicleChargingReserveRequest` | `src/TeslaFleetManagementApi/Requests/Energy/AdjustSiteSOffGridVehicleChargingReserveRequest.cs` |
+| `OffGridVehicleChargingReserveRequest` | `src/TeslaFleetManagementApi/Models/OffGridVehicleChargingReserveRequest.cs` |
+| `GenericUpdateResponse` | `src/TeslaFleetManagementApi/Models/GenericUpdateResponse.cs` |
 
 ### AllowDisallowChargingFromTheGridAndExportingEnergyToTheGrid
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `AllowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(string energySiteId, object? body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `body` — nullable, no default → **must pass explicitly**
+- **Signature**: `AllowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `GenericUpdateResponse` | `Models/GenericUpdateResponse.cs` |
+| `AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridRequest` | `src/TeslaFleetManagementApi/Requests/Energy/AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridRequest.cs` |
+| `GenericUpdateResponse` | `src/TeslaFleetManagementApi/Models/GenericUpdateResponse.cs` |
 
 ### GetBackupOrEnergyHistory
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetBackupOrEnergyHistory(string energySiteId, Kind kind, DateTimeOffset startDate, DateTimeOffset endDate, string? period, string? timeZone, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `period` — nullable, no default → **must pass explicitly**
-  - `timeZone` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `kind` ← `kind`, `start_date` ← `startDate`, `end_date` ← `endDate`, `period` ← `period`, `time_zone` ← `timeZone`
+- **Signature**: `GetBackupOrEnergyHistory(GetBackupOrEnergyHistoryRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`, `Kind`, `StartDate`, `EndDate`
+- **Query params (wire ← C#)**: `kind` ← `Kind`, `start_date` ← `StartDate`, `end_date` ← `EndDate`, `period` ← `Period`, `time_zone` ← `TimeZone`
 - **Returns**: `CalendarHistoryResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `Kind` | `Models/Enums/Kind.cs` |
-| `CalendarHistoryResponse` | `Models/CalendarHistoryResponse.cs` |
+| `GetBackupOrEnergyHistoryRequest` | `src/TeslaFleetManagementApi/Requests/Energy/GetBackupOrEnergyHistoryRequest.cs` |
+| `Kind` | `src/TeslaFleetManagementApi/Models/Enums/Kind.cs` |
+| `CalendarHistoryResponse` | `src/TeslaFleetManagementApi/Models/CalendarHistoryResponse.cs` |
 
 ### GetLiveSiteStatus
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetLiveSiteStatus(string energySiteId, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetLiveSiteStatus(GetLiveSiteStatusRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`
 - **Returns**: `LiveStatusResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `LiveStatusResponse` | `Models/LiveStatusResponse.cs` |
+| `GetLiveSiteStatusRequest` | `src/TeslaFleetManagementApi/Requests/Energy/GetLiveSiteStatusRequest.cs` |
+| `LiveStatusResponse` | `src/TeslaFleetManagementApi/Models/LiveStatusResponse.cs` |
 
 ### GetSiteInformationAssetsSettingsFeatures
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetSiteInformationAssetsSettingsFeatures(string energySiteId, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetSiteInformationAssetsSettingsFeatures(GetSiteInformationAssetsSettingsFeaturesRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`
 - **Returns**: `SiteInfoResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `SiteInfoResponse` | `Models/SiteInfoResponse.cs` |
+| `GetSiteInformationAssetsSettingsFeaturesRequest` | `src/TeslaFleetManagementApi/Requests/Energy/GetSiteInformationAssetsSettingsFeaturesRequest.cs` |
+| `SiteInfoResponse` | `src/TeslaFleetManagementApi/Models/SiteInfoResponse.cs` |
 
 ### GetUserProductsVehiclesEnergySites
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetUserProductsVehiclesEnergySites(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetUserProductsVehiclesEnergySites(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `ProductsResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `ProductsResponse` | `Models/ProductsResponse.cs` |
+| `ProductsResponse` | `src/TeslaFleetManagementApi/Models/ProductsResponse.cs` |
 
 ### GetWallConnectorChargingHistory
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `GetWallConnectorChargingHistory(string energySiteId, KindGetWallConnectorChargingHistory kind, DateTimeOffset startDate, DateTimeOffset endDate, string? timeZone, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `timeZone` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `kind` ← `kind`, `start_date` ← `startDate`, `end_date` ← `endDate`, `time_zone` ← `timeZone`
+- **Signature**: `GetWallConnectorChargingHistory(GetWallConnectorChargingHistoryRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`, `Kind`, `StartDate`, `EndDate`
+- **Query params (wire ← C#)**: `kind` ← `Kind`, `start_date` ← `StartDate`, `end_date` ← `EndDate`, `time_zone` ← `TimeZone`
 - **Returns**: `ChargeHistoryResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `KindGetWallConnectorChargingHistory` | `Models/Enums/KindGetWallConnectorChargingHistory.cs` |
-| `ChargeHistoryResponse` | `Models/ChargeHistoryResponse.cs` |
+| `GetWallConnectorChargingHistoryRequest` | `src/TeslaFleetManagementApi/Requests/Energy/GetWallConnectorChargingHistoryRequest.cs` |
+| `KindGetWallConnectorChargingHistory` | `src/TeslaFleetManagementApi/Models/Enums/KindGetWallConnectorChargingHistory.cs` |
+| `ChargeHistoryResponse` | `src/TeslaFleetManagementApi/Models/ChargeHistoryResponse.cs` |
 
 ### SetSiteModeAutonomousOrSelfConsumption
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `SetSiteModeAutonomousOrSelfConsumption(string energySiteId, OperationRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `SetSiteModeAutonomousOrSelfConsumption(SetSiteModeAutonomousOrSelfConsumptionRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`, `Body`
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `OperationRequest` | `Models/OperationRequest.cs` |
-| `GenericUpdateResponse` | `Models/GenericUpdateResponse.cs` |
+| `SetSiteModeAutonomousOrSelfConsumptionRequest` | `src/TeslaFleetManagementApi/Requests/Energy/SetSiteModeAutonomousOrSelfConsumptionRequest.cs` |
+| `OperationRequest` | `src/TeslaFleetManagementApi/Models/OperationRequest.cs` |
+| `GenericUpdateResponse` | `src/TeslaFleetManagementApi/Models/GenericUpdateResponse.cs` |
 
 ### UpdateStormWatchParticipation
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `UpdateStormWatchParticipation(string energySiteId, StormModeRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `UpdateStormWatchParticipation(UpdateStormWatchParticipationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`, `Body`
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `StormModeRequest` | `Models/StormModeRequest.cs` |
-| `GenericUpdateResponse` | `Models/GenericUpdateResponse.cs` |
+| `UpdateStormWatchParticipationRequest` | `src/TeslaFleetManagementApi/Requests/Energy/UpdateStormWatchParticipationRequest.cs` |
+| `StormModeRequest` | `src/TeslaFleetManagementApi/Models/StormModeRequest.cs` |
+| `GenericUpdateResponse` | `src/TeslaFleetManagementApi/Models/GenericUpdateResponse.cs` |
 
 ### UpdateTimeOfUseTouSettings
 
 - **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
-- **Signature**: `UpdateTimeOfUseTouSettings(string energySiteId, TimeOfUseSettingsRequest body, RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `UpdateTimeOfUseTouSettings(UpdateTimeOfUseTouSettingsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `EnergySiteId`, `Body`
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
-| `TimeOfUseSettingsRequest` | `Models/TimeOfUseSettingsRequest.cs` |
-| `GenericUpdateResponse` | `Models/GenericUpdateResponse.cs` |
+| `UpdateTimeOfUseTouSettingsRequest` | `src/TeslaFleetManagementApi/Requests/Energy/UpdateTimeOfUseTouSettingsRequest.cs` |
+| `TimeOfUseSettingsRequest` | `src/TeslaFleetManagementApi/Models/TimeOfUseSettingsRequest.cs` |
+| `GenericUpdateResponse` | `src/TeslaFleetManagementApi/Models/GenericUpdateResponse.cs` |
 
