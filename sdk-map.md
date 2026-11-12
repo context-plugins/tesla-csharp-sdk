@@ -26,16 +26,16 @@ var httpClient = new HttpClient();
 var options = new TeslaFleetManagementApiClientOptions
 {
     BearerAuth = "YOUR_BEARER_TOKEN",
-    ThirdpartytokenClientCredentials = new OAuth2ClientCredentials
-    {
-        ClientId = "YOUR_CLIENT_ID",
-        ClientSecret = "YOUR_CLIENT_SECRET",
-    },
     ThirdpartytokenAuthorizationCode = new OAuth2AuthorizationCodeCredentials
     {
         ClientId = "YOUR_CLIENT_ID",
         RedirectUri = "YOUR_REDIRECT_URI",
         PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
+    },
+    ThirdpartytokenClientCredentials = new OAuth2ClientCredentials
+    {
+        ClientId = "YOUR_CLIENT_ID",
+        ClientSecret = "YOUR_CLIENT_SECRET",
     },
     Environment = ServerEnvironment.Production,
 };
@@ -48,8 +48,6 @@ DI alternative (`services.AddTeslaFleetManagementApiClient`):
 services.AddTeslaFleetManagementApiClient(options =>
 {
     options.BearerAuth = "YOUR_BEARER_TOKEN";
-    options.ThirdpartytokenClientCredentials =
-        new OAuth2ClientCredentials { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" };
     options.ThirdpartytokenAuthorizationCode =
         new OAuth2AuthorizationCodeCredentials
         {
@@ -57,6 +55,8 @@ services.AddTeslaFleetManagementApiClient(options =>
             RedirectUri = "YOUR_REDIRECT_URI",
             PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
         };
+    options.ThirdpartytokenClientCredentials =
+        new OAuth2ClientCredentials { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" };
     options.Environment = ServerEnvironment.Production;
     // TODO: configure more client options here
 });
@@ -76,10 +76,9 @@ All `TeslaFleetManagementApiClientOptions` properties (source: `src/TeslaFleetMa
 | `StreamReadTimeout` | `TimeSpan?` |
 | `Hooks` | `IReadOnlyList<SdkHook>` |
 | `BearerAuth` | `string?` |
+| `BearerAuthProvider` | `CredentialProvider<string>?` |
 | `ThirdpartytokenAuthorizationCode` | `OAuth2AuthorizationCodeCredentials?` |
-| `ThirdpartytokenAuthorizationCodeTokenStrategy` | `IOAuth2RefreshableTokenStrategy<OAuth2AuthorizationCodeCredentials>?` |
 | `ThirdpartytokenClientCredentials` | `OAuth2ClientCredentials?` |
-| `ThirdpartytokenClientCredentialsTokenStrategy` | `IOAuth2TokenStrategy<OAuth2ClientCredentials>?` |
 
 `ServerEnvironment` (source: `src/TeslaFleetManagementApi/Servers/ServerEnvironment.cs`, namespace `TeslaFleetManagementApi.Servers`)
 `OAuth2AuthorizationCodeCredentials` (source: `src/TeslaFleetManagementApi/Core/Authentication/OAuth2/AuthorizationCode/OAuth2AuthorizationCodeCredentials.cs`, namespace `TeslaFleetManagementApi.Core.Authentication.OAuth2.AuthorizationCode`)
@@ -105,19 +104,21 @@ All `TeslaFleetManagementApiClientOptions` properties (source: `src/TeslaFleetMa
 
 Operations are **throw-based**. On an error status the SDK throws `ApiException<TError>` (`src/TeslaFleetManagementApi/Core/Exceptions/ApiException.cs`, namespace `TeslaFleetManagementApi.Core.Exceptions`) exposing `.Error` of type `TError` beside the `StatusCode`, `Headers` and `ContentType` of the response. There are two cases:
 
-- **Case A — typed error.** `TError` is a generated `…Error : ApiError` class (namespace `TeslaFleetManagementApi.Errors`) with status-specific `TryGet…(out …)` accessors (each returns `true` when that shape is present) plus the inherited `TryGetRawError(out RawError)` fallback. The operation blocks name the exact `TryGet…` methods and the HTTP status each maps to.
+- **Case A — typed error.** `TError` is a generated `…Error : ApiError` class (namespace `TeslaFleetManagementApi.Errors`) with status-specific `TryGet…(out …)` accessors (each returns `true` when that shape is present) plus the inherited `TryGetRawError([NotNullWhen(true)] out RawError? error)` fallback, and an exhaustive `Match` pair — `Match<TResult>(Func<T, TResult> on{Arm}…, Func<RawError, TResult> otherwise)` and its `Action` twin — with one `on…` arm per accessor, in the ordinal order of their names, and a required `otherwise` that receives the `RawError` of a status the operation does not declare. The operation blocks name the exact `TryGet…` methods and the HTTP status each maps to.
 - **Case B — raw error.** `TError` is `RawError` (`src/TeslaFleetManagementApi/Core/ErrorResponse/RawError.cs`, namespace `TeslaFleetManagementApi.Core.ErrorResponse`): `StatusCode: HttpStatusCode` · `ReadAsBytes(): ReadOnlyMemory<byte>` · `ReadAsString(): string` · `ReadAsJson<T>(): T?`.
 
 ⚠ Each of the three lives in its own namespace. `src/TeslaFleetManagementApi/Core/` holds several namespaces, so a catch block naming `ApiException<T>`, a typed `{Operation}Error` and `RawError` together needs a `using` for each.
 
-`ApiException<TError>` is one leaf of the `SdkException` family (`src/TeslaFleetManagementApi/Core/Exceptions/SdkException.cs`): a request that produced no usable response surfaces as `SdkConnectionException` or `SdkTimeoutException`, a body that does not match its declared type as `ResponseDeserializationException`, and a credential that could not be applied as `AuthSchemeException`. Every one of them names the failed call. The full table is in [README → Error Handling](README.md#error-handling).
+`ApiException<TError>` is one leaf of the `SdkException` family (`src/TeslaFleetManagementApi/Core/Exceptions/SdkException.cs`): a request that produced no usable response surfaces as `SdkConnectionException` or `SdkTimeoutException`, a body that does not match its declared type as `ResponseDeserializationException`, and a required credential that is not configured, or one that could not be applied, as `AuthSchemeException`. Every one of them names the failed call. The full table is in [README → Error Handling](README.md#error-handling).
 
 Core error types (`src/TeslaFleetManagementApi/Core/ErrorResponse/`) — public members with their **declared types**, verbatim from source:
 
 | Type | Public members | Source |
 | --- | --- | --- |
-| `ApiError` — abstract base of typed error classes (none in this SDK) | `TryGetRawError(out RawError error): bool` | `src/TeslaFleetManagementApi/Core/ErrorResponse/ApiError.cs` |
+| `ApiError` — abstract base of typed error classes (none in this SDK) | `TryGetRawError([NotNullWhen(true)] out RawError? error): bool` | `src/TeslaFleetManagementApi/Core/ErrorResponse/ApiError.cs` |
 | `RawError` | `StatusCode: HttpStatusCode` · `ReadAsBytes(): ReadOnlyMemory<byte>` · `ReadAsString(): string` · `ReadAsJson<T>(): T?` | `src/TeslaFleetManagementApi/Core/ErrorResponse/RawError.cs` |
+
+Every accessor over a reference-type payload, on a typed error and on a `OneOf`/`AnyOf` union alike, is `[NotNullWhen(true)] out T?`: read the value inside the `if`, where the compiler has narrowed it; a value-type payload (`long`, `JsonElement`) stays a bare `out`.
 
 Typed-error payload shapes (the `out` types in each operation page's error-accessor cells) are ordinary records/unions — no special handling. The operation's **Type sources** table gives the file that declares each one; read field names, declared types, and JSON wire names there, as for any other model.
 
@@ -139,7 +140,7 @@ catch (ApiException<RawError> ex)
 
 ## Operations — by controller (6 groups, 64 operations)
 
-Each links to a sub-page with one row per operation: signature, the request record's required members, query-param wire names, return type, error Case A/B, and Case A's typed accessors with their statuses. Each operation also carries a **Type sources** table — every type it names, with the file that declares it — so resolving a body, return, or error payload to its source is a lookup, never a search. `RawError` is excluded there (its members and path are above); an operation with no table names nothing but primitives and `RawError`.
+Each links to a sub-page with one row per operation: signature, the request record's required members, query-param wire names (with the serialization style where the spec declares one), return type, error Case A/B, and Case A's typed accessors with their statuses. Each operation also carries a **Type sources** table — every type it names, with the file that declares it — so resolving a body, return, or error payload to its source is a lookup, never a search. `RawError` is excluded there (its members and path are above); an operation with no table names nothing but primitives and `RawError`.
 
 **Each row states what is specific to its operation. Everything below holds for EVERY operation unless that operation's row says otherwise, so a row silent on one of these points is telling you the default here applies — take it and move on rather than opening the source to confirm it.**
 
@@ -176,7 +177,7 @@ Each links to a sub-page with one row per operation: signature, the request reco
 | Enums (`OpenStringEnum<T>` / `OpenIntEnum<T>`) — C# member names + wire values | 4 | `src/TeslaFleetManagementApi/Models/Enums/` |
 | Request records (one per operation that takes input; never serialized) | 53 | `src/TeslaFleetManagementApi/Requests/` — a controller's records sit in a folder named after it (an operation with several tags is filed under the first tag it declares) |
 
-Conventions: records are immutable, `init`-only; `required` properties must be set in the object initializer; `T?` is optional. A field's wire name is its `[JsonPropertyName]` and often differs from the C# name (`AmountInCents` ↔ `amount_in_cents`) — read it off the property, don't derive it. `OneOf`/`AnyOf` unions wrap `Optional<T>` variants — build via static factory or implicit conversion, read via `TryGet…(out …)`; `AllOf` compositions are not unions — every constituent is a `required` property, so set them all, and those constituent properties carry no `[JsonPropertyName]` and have no wire name of their own, because the generated converter flattens each constituent's own fields directly into the one parent JSON object. Enums are **not** C# enums — use the static members, whose names are PascalCase even when the wire value isn't (`CollectionMethod.Invoice`, not `.invoice`); there is no public factory, so resolve a raw value with `TryGetKnownValue` and branch with the generated `Match`, whose `otherwise` arm receives any value the SDK does not declare.
+Conventions: records are immutable, `init`-only; `required` properties must be set in the object initializer; `T?` is optional. A field's wire name is its `[JsonPropertyName]` and often differs from the C# name (`AmountInCents` ↔ `amount_in_cents`) — read it off the property, don't derive it. `OneOf`/`AnyOf` unions wrap `Optional<T>` variants — build via static factory or implicit conversion, read one variant via `TryGet…(out …)` or branch over all of them with the generated `Match`, which takes one `on{Variant}` handler per variant in declaration order and then `otherwise`, which receives the raw `JsonElement` of a value the SDK could not place: unions are open on read, so an unrecognised discriminator value or a body no variant accepts lands in `TryGetUnknown(out JsonElement)` and re-serializes verbatim; pass handlers by name, and treat an added or moved variant as a breaking change; `AllOf` compositions are not unions — every constituent is a `required` property, so set them all, and those constituent properties carry no `[JsonPropertyName]` and have no wire name of their own, because the generated converter flattens each constituent's own fields directly into the one parent JSON object. Enums are **not** C# enums — use the static members, whose names are PascalCase even when the wire value isn't (`CollectionMethod.Invoice`, not `.invoice`); there is no public factory, so resolve a raw value with `TryGetKnownValue` and branch with the generated `Match`, whose `otherwise` arm receives any value the SDK does not declare.
 
 Namespaces by content type (add `using` accordingly):
 
@@ -192,31 +193,33 @@ Namespaces by content type (add `using` accordingly):
 
 ## Servers & auth
 
-**Bearer token.** Set `options.BearerAuth = "<token>"`.
+**Bearer token.** Set `options.BearerAuth = "<token>"`, or `options.BearerAuthProvider` to a delegate asked on every request.
 
-**OAuth2 (authorization code).** Set `options.ThirdpartytokenAuthorizationCode` with client id, redirect URI and a `PromptForAuthorizationCode` callback; authorization at `https://fleet-api.prd.na.vn.cloud.tesla.com/authorize`, tokens from `https://fleet-api.prd.na.vn.cloud.tesla.com/token`. `options.ThirdpartytokenAuthorizationCodeTokenStrategy` overrides how tokens are acquired and cached; leave it unset for the SDK's own handling.
+**OAuth2 (authorization code).** Set `options.ThirdpartytokenAuthorizationCode` with client id, redirect URI and a `PromptForAuthorizationCode` callback; authorization at `https://auth.tesla.com/oauth2/v3/authorize`, tokens from `https://auth.tesla.com/oauth2/v3/token`.
 
-**OAuth2 (client credentials).** Set `options.ThirdpartytokenClientCredentials` with your client id and secret; tokens are fetched from `https://fleet-api.prd.na.vn.cloud.tesla.com/token`. `options.ThirdpartytokenClientCredentialsTokenStrategy` overrides how tokens are acquired and cached; leave it unset for the SDK's own handling.
+**OAuth2 (client credentials).** Set `options.ThirdpartytokenClientCredentials` with your client id and secret; tokens are fetched from `https://auth.tesla.com/oauth2/v3/token`.
 
 Operation blocks name their credential in an **Auth** bullet; an operation whose spec declares no scheme carries no such bullet.
 
-- `AND` — every credential listed must be set for the call to be fully authenticated.
-- `OR` — the first credential you set that applies successfully is the one sent, in the order listed.
+- `AND` — every credential listed must be configured; the call fails before anything is sent, naming each one that is not.
+- `OR` — the first configured credential that applies is sent, in the order listed; a configured one that fails falls through to the next; when none is configured the call fails before anything is sent, naming all of them.
+- `OR anonymous` — the operation accepts anonymous callers: it is authenticated when a whole alternative listed before it is configured (every credential in an AND group), and sent without credentials otherwise.
+- `(scopes: …)` — the OAuth2 scopes the operation's token is requested with; a client-credentials scheme mints one token per scope set.
 
-A credential you never set is skipped rather than throwing, and the request is sent anyway — so an authentication failure can mean no credential was sent rather than a bad one. Under `OR`, if every credential you did set fails to apply, `AuthSchemeException` is thrown.
+A required credential you never configured fails the call with `AuthSchemeException` before anything is sent, so a `401` on an operation that requires a credential means the server rejected the one that was sent. A credential option left `null` is read from an environment variable when the client is constructed; the README's **Credentials from environment variables** table names them. A value set in code always wins, including the placeholder assignments in the **Getting a client** sample; delete the line for any credential you supply through an environment variable.
 
 **Environments.** `options.Environment` selects the target environment (`src/TeslaFleetManagementApi/Servers/ServerEnvironment.cs`):
 
 | Environment | Value | Hosting |
 | --- | --- | --- |
 | `ServerEnvironment.Production` *(default)* | `production` | Production |
-| `ServerEnvironment.Environment2` | `environment2` | Production |
 
-**1 server group.** Base-URL templates and override points (`options.Server.…`):
+**2 server groups.** Base-URL templates and override points (`options.Server.…`):
 
-| Group | `Production` base URL | `Environment2` base URL | Override point |
-| --- | --- | --- | --- |
-| `Default` | `https://fleet-api.prd.na.vn.cloud.tesla.com` | `https://auth.tesla.com/oauth2/v3` | `options.Server.Default.Production.BaseUrl` (and the other environments) |
+| Group | `Production` base URL | Override point |
+| --- | --- | --- |
+| `Default` | `https://fleet-api.prd.na.vn.cloud.tesla.com` | `options.Server.Default.Production.BaseUrl` |
+| `AuthServer` | `https://auth.tesla.com/oauth2/v3` | `options.Server.AuthServer.Production.BaseUrl` |
 
 Retry/resilience is configurable via `options.Retry` (`RetryOptions`, backed by Polly).
 

@@ -8,7 +8,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### AdjustSiteSBackupReserve
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `AdjustSiteSBackupReserve(AdjustSiteSBackupReserveRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`, `Body`
 - **Returns**: `BackupResponse`
@@ -22,7 +22,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### AdjustSiteSOffGridVehicleChargingReserve
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `AdjustSiteSOffGridVehicleChargingReserve(AdjustSiteSOffGridVehicleChargingReserveRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`, `Body`
 - **Returns**: `GenericUpdateResponse`
@@ -36,7 +36,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### AllowDisallowChargingFromTheGridAndExportingEnergyToTheGrid
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `AllowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`
 - **Returns**: `GenericUpdateResponse`
@@ -49,7 +49,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### GetBackupOrEnergyHistory
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetBackupOrEnergyHistory(GetBackupOrEnergyHistoryRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`, `Kind`, `StartDate`, `EndDate`
 - **Query params (wire ← C#)**: `kind` ← `Kind`, `start_date` ← `StartDate`, `end_date` ← `EndDate`, `period` ← `Period`, `time_zone` ← `TimeZone`
@@ -64,7 +64,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### GetLiveSiteStatus
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetLiveSiteStatus(GetLiveSiteStatusRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`
 - **Returns**: `LiveStatusResponse`
@@ -77,7 +77,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### GetSiteInformationAssetsSettingsFeatures
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetSiteInformationAssetsSettingsFeatures(GetSiteInformationAssetsSettingsFeaturesRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`
 - **Returns**: `SiteInfoResponse`
@@ -90,7 +90,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### GetUserProductsVehiclesEnergySites
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetUserProductsVehiclesEnergySites(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `ProductsResponse`
 - **Error**: `ApiException<RawError>` — **Case B**
@@ -101,7 +101,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### GetWallConnectorChargingHistory
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetWallConnectorChargingHistory(GetWallConnectorChargingHistoryRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`, `Kind`, `StartDate`, `EndDate`
 - **Query params (wire ← C#)**: `kind` ← `Kind`, `start_date` ← `StartDate`, `end_date` ← `EndDate`, `time_zone` ← `TimeZone`
@@ -116,7 +116,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### SetSiteModeAutonomousOrSelfConsumption
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `SetSiteModeAutonomousOrSelfConsumption(SetSiteModeAutonomousOrSelfConsumptionRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`, `Body`
 - **Returns**: `GenericUpdateResponse`
@@ -130,7 +130,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### UpdateStormWatchParticipation
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `UpdateStormWatchParticipation(UpdateStormWatchParticipationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`, `Body`
 - **Returns**: `GenericUpdateResponse`
@@ -144,7 +144,7 @@ Accessor: `client.Energy` · Source: `src/TeslaFleetManagementApi/Api/Energy.cs`
 
 ### UpdateTimeOfUseTouSettings
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `UpdateTimeOfUseTouSettings(UpdateTimeOfUseTouSettingsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `EnergySiteId`, `Body`
 - **Returns**: `GenericUpdateResponse`

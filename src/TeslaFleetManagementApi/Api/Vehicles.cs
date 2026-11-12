@@ -47,7 +47,20 @@ public sealed class Vehicles
             JsonRequest.Create(request.Body),
             JsonResponse.Create<object>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -71,7 +84,20 @@ public sealed class Vehicles
             JsonRequest.Create(request.Body),
             JsonResponse.Create<object>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -95,7 +121,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -119,7 +158,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<DriversResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -143,7 +195,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<SiteInfoResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -167,7 +232,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<SiteInfoResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -191,7 +269,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -215,7 +306,20 @@ public sealed class Vehicles
             JsonRequest.Create(request.Body),
             JsonResponse.Create<object>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -239,7 +343,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -263,7 +380,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -287,7 +417,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<Api1VehiclesResponseResponse200>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -309,7 +452,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<Api1VehiclesResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -333,7 +489,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<Api1VehiclesMobileEnabledResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -357,7 +526,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<Api1VehiclesNearbyChargingSitesResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -381,7 +563,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<SimpleOkResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -405,7 +600,20 @@ public sealed class Vehicles
             JsonRequest.Create(request.Body),
             VoidResponse.Instance,
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -429,7 +637,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<SiteInfoResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -453,7 +674,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<Api1DxVehiclesOptionsResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -477,7 +711,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<SiteInfoResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -501,7 +748,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<Api1VehiclesWakeUpResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 
@@ -523,7 +783,20 @@ public sealed class Vehicles
             EmptyBody.Instance,
             JsonResponse.Create<Api1DxWarrantyDetailsResponse>(),
             RawErrorResponse.Instance,
-            [new AuthSchemeAny(_auth.ThirdpartytokenAuthorizationCode, _auth.ThirdpartytokenClientCredentials)],
+            AuthScheme.Any(
+                _auth.ThirdpartytokenAuthorizationCode,
+                _auth.ThirdpartytokenClientCredentials.ForScopes(
+                    "openid",
+                    "offline_access",
+                    "user_data",
+                    "vehicle_device_data",
+                    "vehicle_location",
+                    "vehicle_cmds",
+                    "vehicle_charging_cmds",
+                    "vehicle_specs",
+                    "energy_device_data",
+                    "energy_cmds",
+                    "enterprise_management")),
             requestOptions,
             cancellationToken);
 }

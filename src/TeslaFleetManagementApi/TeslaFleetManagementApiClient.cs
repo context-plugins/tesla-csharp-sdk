@@ -1,6 +1,7 @@
 using System.Net.Http;
 using TeslaFleetManagementApi.Api;
 using TeslaFleetManagementApi.Core;
+using TeslaFleetManagementApi.Core.Configuration;
 using TeslaFleetManagementApi.Core.Logging;
 using TeslaFleetManagementApi.Core.Models;
 
@@ -31,7 +32,10 @@ public sealed class TeslaFleetManagementApiClient
             new HeaderParam("X-APIMatic-Runtime", RuntimeEnvironment.Runtime),
         ]);
         var resiliencePipelineFactory = new ResiliencePipelineFactory(options.Retry, options.TimeProvider);
-        var httpLogger = new HttpLogger(options.Logging, "TeslaFleetManagementApiClient", options.TimeProvider);
+        var httpLogger = new HttpLogger(
+            options.Logging.WithEnvironmentDefaults("TESLA_FLEET_MANAGEMENT_API_LOG"),
+            "TeslaFleetManagementApiClient",
+            options.TimeProvider);
         var responseContexts = new ResponseContextFactory(options.TimeProvider, options.StreamReadTimeout);
         _rawClient =
             new RawClient(

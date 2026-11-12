@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Polly;
 using Polly.Retry;
 using Polly.Timeout;
+using TeslaFleetManagementApi.Core.Authentication;
 using TeslaFleetManagementApi.Core.Configuration;
 using TeslaFleetManagementApi.Core.Logging;
 using TeslaFleetManagementApi.Core.Request;
@@ -17,6 +18,7 @@ internal sealed class ResiliencePipelineFactory
 {
     internal static readonly ResiliencePropertyKey<HttpLogger.Scope> LogScopeKey = new("Sdk.LogScope");
     internal static readonly ResiliencePropertyKey<HttpMethod> MethodKey = new("Sdk.Method");
+    internal static readonly ResiliencePropertyKey<IAuthScheme> AuthKey = new("Sdk.Auth");
 
     internal static readonly TimeSpan MaxDelay = TimeSpan.FromMinutes(1);
 
@@ -27,28 +29,29 @@ internal sealed class ResiliencePipelineFactory
 
     public ResiliencePipelineFactory(RetryOptions options, TimeProvider clock)
     {
-        _pipeline = CreateResiliencePipeline(options, clock);
-        _timeoutOnly = options.MaxRetries <= 0
-            ? _pipeline
-            : CreateResiliencePipeline(options with { MaxRetries = 0 }, clock);
+        _pipeline = CreateResiliencePipeline(options, clock, allowRetries: true);
+        _timeoutOnly = CreateResiliencePipeline(options, clock, allowRetries: false);
     }
 
     public ResiliencePipeline<HttpResponseMessage> Create(IRequest request) =>
         request.CanRetry ? _pipeline : _timeoutOnly;
 
     private static ResiliencePipeline<HttpResponseMessage> CreateResiliencePipeline(
-        RetryOptions options, TimeProvider clock)
+        RetryOptions options, TimeProvider clock, bool allowRetries)
     {
-        // Nothing to wrap: retries disabled (MaxRetries == 0) and no timeout → no-op pipeline.
+        // Nothing to wrap: no retries of any kind and no timeout → no-op pipeline.
         // Returning Empty here also keeps the builder from ever seeing zero strategies.
-        if (options is { MaxRetries: <= 0, Timeout: null })
+        if (!allowRetries && options.Timeout is null)
             return ResiliencePipeline<HttpResponseMessage>.Empty;
 
         var builder = new ResiliencePipelineBuilder<HttpResponseMessage> { TimeProvider = clock };
 
-        // MaxRetries == 0 disables retries; Polly requires MaxRetryAttempts >= 1, so skip the
-        // strategy entirely rather than passing 0 (which would throw at build time).
-        if (options.MaxRetries > 0)
+        if (allowRetries)
+            builder.AddRetry(ReauthenticationRetry());
+
+        // MaxRetries == 0 disables transient retries; Polly requires MaxRetryAttempts >= 1, so skip
+        // the strategy entirely rather than passing 0 (which would throw at build time).
+        if (allowRetries && options.MaxRetries > 0)
         {
             HashSet<HttpMethod> methodsToRetry = [.. options.HttpMethodsToRetry];
             HashSet<HttpStatusCode> statusCodesToRetry = [.. options.StatusCodesToRetry];
@@ -97,12 +100,31 @@ internal sealed class ResiliencePipelineFactory
             });
         }
 
-        // Retry outer, Timeout inner → per-attempt timeout, not cumulative.
+        // Retries outer, Timeout inner → per-attempt timeout, not cumulative.
         if (options.Timeout is { } timeout)
             builder.AddTimeout(new TimeoutStrategyOptions { Timeout = timeout });
 
         return builder.Build();
     }
+
+    private static RetryStrategyOptions<HttpResponseMessage> ReauthenticationRetry() => new()
+    {
+        MaxRetryAttempts = 1,
+        Delay = TimeSpan.Zero,
+        ShouldHandle = args => new ValueTask<bool>(
+            args.Outcome.Result is { StatusCode: HttpStatusCode.Unauthorized }
+            && args.Context.Properties.TryGetValue(AuthKey, out var auth)
+            && auth.IsRevocable()),
+        OnRetry = args =>
+        {
+            args.Outcome.Result?.Dispose();
+
+            if (args.Context.Properties.TryGetValue(LogScopeKey, out var scope))
+                scope.Retrying(args.AttemptNumber + 1, 1, args.RetryDelay, new RetryReason.Status(HttpStatusCode.Unauthorized));
+
+            return default;
+        },
+    };
 
     internal static TimeSpan BackoffDelay(RetryOptions options, int attemptNumber, Random jitterer)
     {

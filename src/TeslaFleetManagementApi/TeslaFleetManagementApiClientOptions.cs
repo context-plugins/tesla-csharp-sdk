@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using TeslaFleetManagementApi.Core.Authentication.OAuth2;
+using TeslaFleetManagementApi.Core.Authentication;
 using TeslaFleetManagementApi.Core.Authentication.OAuth2.AuthorizationCode;
 using TeslaFleetManagementApi.Core.Authentication.OAuth2.ClientCredentials;
 using TeslaFleetManagementApi.Core.Configuration;
@@ -24,8 +24,7 @@ public class TeslaFleetManagementApiClientOptions
     public TimeSpan? StreamReadTimeout { get; set; } = TimeSpan.FromSeconds(60);
     public IReadOnlyList<SdkHook> Hooks { get; set; } = [];
     public string? BearerAuth { get; set; }
+    public CredentialProvider<string>? BearerAuthProvider { get; set; }
     public OAuth2AuthorizationCodeCredentials? ThirdpartytokenAuthorizationCode { get; set; }
-    public IOAuth2RefreshableTokenStrategy<OAuth2AuthorizationCodeCredentials>? ThirdpartytokenAuthorizationCodeTokenStrategy { get; set; }
     public OAuth2ClientCredentials? ThirdpartytokenClientCredentials { get; set; }
-    public IOAuth2TokenStrategy<OAuth2ClientCredentials>? ThirdpartytokenClientCredentialsTokenStrategy { get; set; }
 }

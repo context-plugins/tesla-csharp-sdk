@@ -11,7 +11,8 @@ using TeslaFleetManagementApi.Core.Response;
 
 namespace TeslaFleetManagementApi.Core.Authentication.OAuth2.Password;
 
-internal sealed class OAuth2PasswordCredentialsStrategy : IOAuth2TokenStrategy<OAuth2PasswordCredentials>
+internal sealed class OAuth2PasswordCredentialsStrategy
+    : IOAuth2RefreshableTokenStrategy<OAuth2PasswordCredentials>
 {
     private readonly UrlTemplate _tokenUrl;
     private readonly RawClient _rawClient;
@@ -31,7 +32,8 @@ internal sealed class OAuth2PasswordCredentialsStrategy : IOAuth2TokenStrategy<O
         => (_tokenUrl, _rawClient, _headerParams, _bodyParams) =
             (tokenUrl, rawClient, authHeaders, authBodyParams);
 
-    public Task<OAuthToken> GetToken(OAuth2PasswordCredentials credentials, CancellationToken ct) =>
+    public Task<OAuthTokenRefreshable> GetToken(OAuth2PasswordCredentials credentials, string? scope,
+        CancellationToken ct) =>
         _rawClient.Execute(
             _tokenUrl, [], [],
             [
@@ -43,17 +45,41 @@ internal sealed class OAuth2PasswordCredentialsStrategy : IOAuth2TokenStrategy<O
                 new Param("grant_type", "password"),
                 new Param("username", credentials.Username),
                 new Param("password", credentials.Password),
-                .. ScopeParams(credentials.Scope),
+                .. ScopeParams(scope),
                 .. _bodyParams(credentials.ClientId, credentials.ClientSecret),
             ]),
-            JsonResponse.Create<OAuthToken>(),
+            JsonResponse.Create<OAuthTokenRefreshable>(),
             RawErrorResponse.Instance,
-            [],
+            AuthScheme.None,
             null,
             ct);
 
+    public async Task<OAuthTokenRefreshable?> TryRefreshToken(
+        OAuth2PasswordCredentials credentials, string refreshToken, CancellationToken ct)
+    {
+        var result = await _rawClient.ExecuteResult(
+            _tokenUrl, [], [],
+            [
+                .. _headerParams(credentials.ClientId, credentials.ClientSecret),
+                new HeaderParam("Idempotency-Key", Guid.NewGuid())
+            ],
+            HttpMethod.Post,
+            FormUrlEncodedRequest.Create([
+                new Param("grant_type", "refresh_token"),
+                new Param("refresh_token", refreshToken),
+                .. _bodyParams(credentials.ClientId, credentials.ClientSecret),
+            ]),
+            JsonResponse.Create<OAuthTokenRefreshable>(),
+            RawErrorResponse.Instance,
+            AuthScheme.None,
+            null,
+            ct).ConfigureAwait(false);
+
+        return result.TryGetResponse(out var token) ? token : null;
+    }
+
     private static IReadOnlyList<Param> ScopeParams(string? scope) =>
-        scope is null or "" ? [] : [new Param("scope", scope)];
+        scope is null ? [] : [new Param("scope", scope)];
 
     private static IReadOnlyList<HeaderParam> HeaderParams(string clientId, string? clientSecret)
     {

@@ -37,7 +37,11 @@ internal sealed class PlainTextSseResponse<TResponse> : IResponse<IAsyncEnumerab
                 {
                     value = _map(Encoding.UTF8.GetString(data));
                 }
-                catch (Exception ex) when (ex is not OperationCanceledException)
+                catch (OperationCanceledException) when (ct.IsCancellationRequested)
+                {
+                    throw;
+                }
+                catch (Exception ex)
                 {
                     throw ResponseDeserializationException.For(context, typeof(TResponse),
                         $"{context.Call} received a Server-Sent Events frame that could not be parsed as {typeof(TResponse).Name}.", ex);

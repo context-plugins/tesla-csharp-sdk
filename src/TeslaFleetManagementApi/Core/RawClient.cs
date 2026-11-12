@@ -62,7 +62,7 @@ internal sealed class RawClient
         IRequest request,
         IResponse<TResponse> response,
         IErrorResponse<TError> errorResponseDeserializer,
-        IReadOnlyList<IAuthScheme> authPolicies,
+        IAuthScheme auth,
         RequestOptions? requestOptions,
         CancellationToken cancellationToken) =>
         ExecuteResult(
@@ -73,7 +73,7 @@ internal sealed class RawClient
                 headerParameters,
                 httpMethod,
                 request,
-                authPolicies),
+                auth),
             ApiResponse.Create(response, errorResponseDeserializer),
             requestOptions,
             cancellationToken);
@@ -87,7 +87,7 @@ internal sealed class RawClient
         IRequest request,
         IResponse<TResponse> response,
         IErrorResponse<TError> errorResponseDeserializer,
-        IReadOnlyList<IAuthScheme> authPolicies,
+        IAuthScheme auth,
         RequestOptions? requestOptions,
         CancellationToken cancellationToken) =>
         (await ExecuteResult(
@@ -99,14 +99,14 @@ internal sealed class RawClient
             request,
             response,
             errorResponseDeserializer,
-            authPolicies,
+            auth,
             requestOptions,
             cancellationToken).ConfigureAwait(false)).GetResponseOrThrow();
 
     public Pageable<TResponse, TItem> ExecutePaged<TResponse, TState, TItem, TError>(
         TState initialState,
         Func<TState, ApiRequest> requestFactory,
-        Func<TResponse, IReadOnlyList<TItem>> itemsSelector,
+        Func<TResponse, IReadOnlyList<TItem>?> itemsSelector,
         ApiResponse<TResponse, TError> response,
         RequestOptions? requestOptions,
         CancellationToken cancellationToken)
@@ -128,21 +128,22 @@ internal sealed class RawClient
     public Pageable<ApiResult<TResponse, TError>, TItem> ExecutePagedResult<TResponse, TState, TItem, TError>(
         TState initialState,
         Func<TState, ApiRequest> requestFactory,
-        Func<TResponse, IReadOnlyList<TItem>> itemsSelector,
+        Func<TResponse, IReadOnlyList<TItem>?> itemsSelector,
         ApiResponse<TResponse, TError> response,
         RequestOptions? requestOptions,
         CancellationToken cancellationToken)
         where TState : IPageState<TResponse, TState>
     {
-        var pages = Paginate(initialState, requestFactory, response,
+        var pages = Paginate(initialState, requestFactory, itemsSelector, response,
             (req, resp, ct) => ExecuteResult(req, resp, requestOptions, ct), cancellationToken);
 
         return new Pageable<ApiResult<TResponse, TError>, TItem>(pages, apiResult =>
-            apiResult.TryGetResponse(out var page) ? itemsSelector(page) : []);
+            apiResult.TryGetResponse(out var page) ? itemsSelector(page) : null);
 
         static async IAsyncEnumerable<ApiResult<TResponse, TError>> Paginate(
             TState initialState,
             Func<TState, ApiRequest> requestFactory,
+            Func<TResponse, IReadOnlyList<TItem>?> itemsSelector,
             ApiResponse<TResponse, TError> response,
             ApiCallHandler<TResponse, TError> execute,
             [EnumeratorCancellation] CancellationToken cancellationToken)
@@ -159,7 +160,7 @@ internal sealed class RawClient
                 if (!result.TryGetResponse(out var page))
                     yield break;
 
-                var next = state.Next(page, result.Headers);
+                var next = state.Next(page, result.Headers, itemsSelector(page)?.Count ?? 0);
                 if (next is null)
                     yield break;
 
@@ -175,12 +176,13 @@ internal sealed class RawClient
         CancellationToken cancellationToken)
     {
         var uri = _uriFactory.Create(request.UrlTemplate, request.QueryParameters, request.TemplateParameters);
-        var headers = _headerFactory.Create(request.HeaderParameters);
-        
+        var headers = _headerFactory.Create(request.HeaderParameters, requestOptions?.Headers ?? []);
+
         var log = _httpLogger.Begin(request.HttpMethod, uri, requestOptions);
         var pipeline = _resiliencePipelineFactory.Create(request.Request);
-        
+
         var context = ResilienceContextPool.Shared.Get(cancellationToken);
+        context.Properties.Set(ResiliencePipelineFactory.AuthKey, request.Auth);
         context.Properties.Set(ResiliencePipelineFactory.LogScopeKey, log);
         context.Properties.Set(ResiliencePipelineFactory.MethodKey, request.HttpMethod);
 
@@ -204,22 +206,47 @@ internal sealed class RawClient
                 {
                     httpRequest.Content = request.Request.Get();
                     httpRequest.Headers.AddRange(headers);
-                    await request.AuthPolicies.Apply(httpRequest, ctx.CancellationToken).ConfigureAwait(false);
+                    AuthOutcome outcome;
+                    try
+                    {
+                        outcome = await request.Auth.Apply(httpRequest, ctx.CancellationToken).ConfigureAwait(false);
+                    }
+                    catch (OperationCanceledException) when (ctx.CancellationToken.IsCancellationRequested)
+                    {
+                        throw;
+                    }
+                    catch (Exception ex) when (ex is not AuthSchemeException)
+                    {
+                        throw AuthSchemeException.Faulted(callContext, ex);
+                    }
+
+                    if (outcome.TryGetUnsatisfied(out var unsatisfied))
+                        throw AuthSchemeException.Unsatisfied(callContext, unsatisfied);
+
                     await hooks.BeforeRequest(httpRequest, hookContext, ctx.CancellationToken).ConfigureAwait(false);
 
                     await log.RequestSending(httpRequest).ConfigureAwait(false);
 
-                    var httpResponse = await _httpClient
-                        .SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead, ctx.CancellationToken)
-                        .ConfigureAwait(false);
+                    HttpResponseMessage httpResponse;
+                    try
+                    {
+                        httpResponse = await _httpClient
+                            .SendAsync(httpRequest, HttpCompletionOption.ResponseHeadersRead, ctx.CancellationToken)
+                            .ConfigureAwait(false);
+                    }
+                    catch (TaskCanceledException ex) when (!ctx.CancellationToken.IsCancellationRequested && _httpClient.Timeout != Timeout.InfiniteTimeSpan)
+                    {
+                        throw SdkTimeoutException.For(callContext, _httpClient.Timeout,
+                            $"{callContext} received no response within {_httpClient.Timeout.TotalSeconds.ToString(CultureInfo.InvariantCulture)} s.", ex);
+                    }
 
                     try
                     {
                         log.ResponseReceived(httpResponse, _statusPolicy.IsSuccess(httpResponse.StatusCode));
-                        await hooks.AfterResponse(httpResponse, hookContext, ctx.CancellationToken).ConfigureAwait(false);
+                        if (_statusPolicy.IsUnauthorized(httpResponse.StatusCode) && request.Auth is IRevocableAuthScheme revocable)
+                            await revocable.Invalidate(httpRequest, ctx.CancellationToken).ConfigureAwait(false);
 
-                        if (_statusPolicy.IsUnauthorized(httpResponse.StatusCode))
-                            request.AuthPolicies.InvalidateRevocable();
+                        await hooks.AfterResponse(httpResponse, hookContext, ctx.CancellationToken).ConfigureAwait(false);
 
                         return httpResponse;
                     }
@@ -235,17 +262,15 @@ internal sealed class RawClient
                 }
             }, context).ConfigureAwait(false);
         }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            throw;
+        }
         catch (TimeoutRejectedException ex)
         {
             log.Failed(ex);
             throw SdkTimeoutException.For(callContext, ex.Timeout,
                 $"{callContext} received no response within {ex.Timeout.TotalSeconds.ToString(CultureInfo.InvariantCulture)} s.", ex);
-        }
-        catch (TaskCanceledException ex) when (!cancellationToken.IsCancellationRequested && _httpClient.Timeout != Timeout.InfiniteTimeSpan)
-        {
-            log.Failed(ex);
-            throw SdkTimeoutException.For(callContext, _httpClient.Timeout,
-                $"{callContext} received no response within {_httpClient.Timeout.TotalSeconds.ToString(CultureInfo.InvariantCulture)} s.", ex);
         }
         catch (HttpRequestException ex)
         {
@@ -256,9 +281,9 @@ internal sealed class RawClient
                 RequestUri = callContext.RequestUri,
             };
         }
-        catch (Exception ex) when (ex is not OperationCanceledException || !cancellationToken.IsCancellationRequested)
+        catch (Exception ex)
         {
-            log.Failed(ex);
+            log.Failed(ex is SdkException { InnerException: { } cause } ? cause : ex);
             throw;
         }
         finally

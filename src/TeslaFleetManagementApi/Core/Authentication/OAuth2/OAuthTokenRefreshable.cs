@@ -13,7 +13,7 @@ namespace TeslaFleetManagementApi.Core.Authentication.OAuth2;
 /// falling back to a full re-authorization if the refresh token has been revoked or has itself
 /// expired.
 /// </remarks>
-public sealed record OAuthTokenRefreshable : OAuthToken
+internal sealed record OAuthTokenRefreshable : OAuthToken
 {
     /// <summary>
     /// Issued at the authorization server's discretion — <c>null</c> when the server does not

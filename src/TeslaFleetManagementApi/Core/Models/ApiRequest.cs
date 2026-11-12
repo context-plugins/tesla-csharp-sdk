@@ -13,7 +13,7 @@ internal sealed class ApiRequest
     public IReadOnlyCollection<HeaderParam> HeaderParameters { get; }
     public HttpMethod HttpMethod { get; }
     public IRequest Request { get; }
-    public IReadOnlyList<IAuthScheme> AuthPolicies { get; }
+    public IAuthScheme Auth { get; }
 
     public ApiRequest(UrlTemplate urlTemplate,
         IReadOnlyCollection<TemplateParam> templateParameters,
@@ -21,7 +21,7 @@ internal sealed class ApiRequest
         IReadOnlyCollection<HeaderParam> headerParameters,
         HttpMethod httpMethod,
         IRequest request,
-        IReadOnlyList<IAuthScheme> authPolicies)
+        IAuthScheme auth)
     {
         UrlTemplate = urlTemplate;
         TemplateParameters = templateParameters;
@@ -29,6 +29,6 @@ internal sealed class ApiRequest
         HeaderParameters = headerParameters;
         HttpMethod = httpMethod;
         Request = request;
-        AuthPolicies = authPolicies;
+        Auth = auth;
     }
 }

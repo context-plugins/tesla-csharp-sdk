@@ -6,19 +6,26 @@ namespace TeslaFleetManagementApi.Core.Authentication.ApiKey;
 
 internal sealed class ApiKeyHeaderScheme : IAuthScheme
 {
+    private readonly string _name;
     private readonly string _headerName;
-    private readonly string _apiKey;
+    private readonly CredentialProvider<string> _provider;
 
-    public ApiKeyHeaderScheme(string headerName, string apiKey)
+    public ApiKeyHeaderScheme(string name, string headerName, CredentialProvider<string> provider)
     {
+        _name = name;
         _headerName = headerName;
-        _apiKey = apiKey;
+        _provider = provider;
     }
 
-    public ValueTask Apply(HttpRequestMessage request, CancellationToken cancellationToken)
+    public async ValueTask<AuthOutcome> Apply(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        request.Headers.Add(_headerName, _apiKey);
-        return default;
+        var apiKey = await _provider(cancellationToken).ConfigureAwait(false);
+        if (apiKey is null)
+            return AuthOutcome.Unsatisfied(_name);
+
+        request.Headers.Remove(_headerName);
+        request.Headers.Add(_headerName, apiKey);
+        return AuthOutcome.Applied;
     }
 }
 
@@ -26,9 +33,9 @@ internal static class ApiKeyHeaderSchemeExtensions
 {
     extension(ApiKeyHeaderScheme)
     {
-        public static IAuthScheme Create(string paramName, string? apiKey) =>
-            apiKey is not null
-                ? new ApiKeyHeaderScheme(paramName, apiKey)
-                : NoneAuthScheme.Instance;
+        public static IAuthScheme Create(string name, string headerName, CredentialProvider<string>? provider, string? value) =>
+            (provider ?? CredentialProvider.Constant(value)) is { } resolved
+                ? new ApiKeyHeaderScheme(name, headerName, resolved)
+                : new UnconfiguredAuthScheme(name);
     }
 }

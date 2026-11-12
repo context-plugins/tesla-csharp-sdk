@@ -8,7 +8,7 @@ Accessor: `client.Charging` · Source: `src/TeslaFleetManagementApi/Api/Charging
 
 ### GetChargingHistory
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetChargingHistory(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `ChargingHistoryResponse`
 - **Error**: `ApiException<RawError>` — **Case B**
@@ -19,7 +19,7 @@ Accessor: `client.Charging` · Source: `src/TeslaFleetManagementApi/Api/Charging
 
 ### GetChargingInvoice
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetChargingInvoice(GetChargingInvoiceRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `Id`
 - **Returns**: `void` (Task)
@@ -31,7 +31,7 @@ Accessor: `client.Charging` · Source: `src/TeslaFleetManagementApi/Api/Charging
 
 ### GetChargingSessions
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetChargingSessions(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `ChargingSessionsResponse`
 - **Error**: `ApiException<RawError>` — **Case B**

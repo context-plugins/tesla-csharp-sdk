@@ -8,7 +8,7 @@ Accessor: `client.Partner` · Source: `src/TeslaFleetManagementApi/Api/Partner.c
 
 ### GetPublicKeyForADomain
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetPublicKeyForADomain(GetPublicKeyForADomainRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `Domain`
 - **Query params (wire ← C#)**: `domain` ← `Domain`
@@ -22,7 +22,7 @@ Accessor: `client.Partner` · Source: `src/TeslaFleetManagementApi/Api/Partner.c
 
 ### GetRecentFleetTelemetryErrors
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetRecentFleetTelemetryErrors(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `FleetTelemetryErrorsResponse`
 - **Error**: `ApiException<RawError>` — **Case B**
@@ -33,7 +33,7 @@ Accessor: `client.Partner` · Source: `src/TeslaFleetManagementApi/Api/Partner.c
 
 ### GetVinsWithFleetTelemetryErrors
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `GetVinsWithFleetTelemetryErrors(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `BackupResponse`
 - **Error**: `ApiException<RawError>` — **Case B**
@@ -44,7 +44,7 @@ Accessor: `client.Partner` · Source: `src/TeslaFleetManagementApi/Api/Partner.c
 
 ### RegisterAPartnerAccount
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `RegisterAPartnerAccount(RegisterAPartnerAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `Body`
 - **Returns**: `RegisterPartnerResponse`

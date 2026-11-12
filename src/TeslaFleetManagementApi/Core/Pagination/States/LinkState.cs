@@ -17,7 +17,7 @@ internal sealed record LinkState<TResponse> : IPageState<TResponse, LinkState<TR
 
     public required string? Link { get; init; }
 
-    public LinkState<TResponse>? Next(TResponse page, HttpResponseHeaders headers)
+    public LinkState<TResponse>? Next(TResponse page, HttpResponseHeaders headers, int itemCount)
     {
         var nextLink = _nextLink(page, headers);
 
@@ -48,14 +48,12 @@ file static class LinkPaginationExtensions
         public UrlTemplate ResolveNextLink(string nextLink)
         {
             var baseUri = BuildBaseUri(baseUrlTemplate);
-            if (!Uri.TryCreate(nextLink, UriKind.Absolute, out var resolvedUri))
-            {
-                if (!Uri.TryCreate(baseUri, nextLink, out resolvedUri))
-                    throw new InvalidOperationException($"Invalid pagination link: '{nextLink}'.");
-            }
-            else if (!(string.Equals(resolvedUri.Scheme, baseUri.Scheme, StringComparison.OrdinalIgnoreCase) &&
-                       string.Equals(resolvedUri.Host, baseUri.Host, StringComparison.OrdinalIgnoreCase) &&
-                       resolvedUri.Port == baseUri.Port))
+            if (!Uri.TryCreate(baseUri, nextLink, out var resolvedUri))
+                throw new InvalidOperationException($"Invalid pagination link: '{nextLink}'.");
+
+            if (!(string.Equals(resolvedUri.Scheme, baseUri.Scheme, StringComparison.OrdinalIgnoreCase) &&
+                  string.Equals(resolvedUri.Host, baseUri.Host, StringComparison.OrdinalIgnoreCase) &&
+                  resolvedUri.Port == baseUri.Port))
             {
                 throw new InvalidOperationException($"Cross-origin pagination link " +
                     $"'{resolvedUri.GetLeftPart(UriPartial.Authority)}' does not match API base " +

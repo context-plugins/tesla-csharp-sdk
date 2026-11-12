@@ -8,19 +8,25 @@ namespace TeslaFleetManagementApi.Core.Authentication.ApiKey;
 
 internal sealed class ApiKeyCookieScheme : IAuthScheme
 {
+    private readonly string _name;
     private readonly string _cookieName;
-    private readonly string _apiKey;
+    private readonly CredentialProvider<string> _provider;
 
-    public ApiKeyCookieScheme(string cookieName, string apiKey)
+    public ApiKeyCookieScheme(string name, string cookieName, CredentialProvider<string> provider)
     {
+        _name = name;
         _cookieName = cookieName;
-        _apiKey = apiKey;
+        _provider = provider;
     }
 
     // RFC 6265: merge into a single Cookie header, replacing any existing value for this name
-    public ValueTask Apply(HttpRequestMessage request, CancellationToken cancellationToken)
+    public async ValueTask<AuthOutcome> Apply(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        var newCookie = $"{_cookieName}={Uri.EscapeDataString(_apiKey)}";
+        var apiKey = await _provider(cancellationToken).ConfigureAwait(false);
+        if (apiKey is null)
+            return AuthOutcome.Unsatisfied(_name);
+
+        var newCookie = $"{_cookieName}={Uri.EscapeDataString(apiKey)}";
 
         request.Headers.TryGetValues("Cookie", out var existing);
         request.Headers.Remove("Cookie");
@@ -28,7 +34,7 @@ internal sealed class ApiKeyCookieScheme : IAuthScheme
         if (existing is null)
         {
             request.Headers.Add("Cookie", newCookie);
-            return default;
+            return AuthOutcome.Applied;
         }
 
         var replacePrefix = _cookieName + "=";
@@ -38,7 +44,7 @@ internal sealed class ApiKeyCookieScheme : IAuthScheme
             .Where(c => !c.StartsWith(replacePrefix, StringComparison.OrdinalIgnoreCase));
 
         request.Headers.Add("Cookie", string.Join("; ", otherCookies.Append(newCookie)));
-        return default;
+        return AuthOutcome.Applied;
     }
 }
 
@@ -46,9 +52,9 @@ internal static class ApiKeyCookieSchemeExtensions
 {
     extension(ApiKeyCookieScheme)
     {
-        public static IAuthScheme Create(string paramName, string? apiKey) =>
-            apiKey is not null
-                ? new ApiKeyCookieScheme(paramName, apiKey)
-                : NoneAuthScheme.Instance;
+        public static IAuthScheme Create(string name, string cookieName, CredentialProvider<string>? provider, string? value) =>
+            (provider ?? CredentialProvider.Constant(value)) is { } resolved
+                ? new ApiKeyCookieScheme(name, cookieName, resolved)
+                : new UnconfiguredAuthScheme(name);
     }
 }

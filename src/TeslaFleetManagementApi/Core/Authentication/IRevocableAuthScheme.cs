@@ -1,3 +1,7 @@
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace TeslaFleetManagementApi.Core.Authentication;
 
 /// <summary>
@@ -7,26 +11,24 @@ namespace TeslaFleetManagementApi.Core.Authentication;
 /// </summary>
 /// <remarks>
 /// When <see cref="RawClient"/> observes a <c>401 Unauthorized</c> response on a request that used
-/// a revocable scheme, it calls <see cref="Invalidate"/> so the next request re-acquires a fresh
-/// credential rather than continuing to send the rejected one until the cache entry expires
-/// naturally. The current request is not retried automatically.
+/// a revocable scheme, it calls <see cref="Invalidate"/> with that request and then retries the
+/// request once, so the retry re-acquires a fresh credential instead of resending the rejected one.
 /// <para>
-/// Composite schemes (e.g. <c>AuthSchemeAll</c>, <c>AuthSchemeAny</c>) implement this interface
-/// and propagate <see cref="Invalidate"/> to every revocable inner scheme.
+/// The scheme drops its cached credential only when it is the one presented on the rejected
+/// request, and does so under its own lock: a credential issued after the rejected one is kept,
+/// and concurrent <c>401</c>s for the same credential cost a single re-acquisition.
 /// </para>
 /// <para>
-/// <b>Concurrency contract.</b> <see cref="Invalidate"/> is non-blocking and does not synchronize
-/// with an in-flight credential fetch in another thread. If a fetch is mid-flight, it may complete
-/// and cache its result after <see cref="Invalidate"/> returns — the freshly fetched credential
-/// was issued by the authorization server <i>after</i> the moment of invalidation, so caching it
-/// is correct. The only consequence is that a subsequent invalidation-driven refetch may be
-/// skipped. This is intentional: <see cref="Invalidate"/> is a hint, not a barrier.
+/// Composite schemes (<c>AuthScheme.All</c>, <c>AuthScheme.Any</c>, <c>OrAnonymous()</c>) implement this interface
+/// and propagate <see cref="Invalidate"/> to every revocable inner scheme; only the inner scheme
+/// whose credential is on the request drops it.
 /// </para>
 /// </remarks>
-public interface IRevocableAuthScheme : IAuthScheme
+internal interface IRevocableAuthScheme : IAuthScheme
 {
     /// <summary>
-    /// Drops any cached credential state. Safe to call concurrently and idempotently.
+    /// Drops the cached credential presented on <paramref name="rejected"/> if it is still the
+    /// cached one. Safe to call concurrently and idempotently.
     /// </summary>
-    void Invalidate();
+    ValueTask Invalidate(HttpRequestMessage rejected, CancellationToken cancellationToken);
 }

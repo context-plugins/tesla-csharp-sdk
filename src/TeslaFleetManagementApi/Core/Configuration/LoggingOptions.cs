@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using TeslaFleetManagementApi.Core.Logging;
 
 namespace TeslaFleetManagementApi.Core.Configuration;
 
@@ -27,4 +28,35 @@ public record LoggingOptions
     public IReadOnlyCollection<string> UnmaskHeaders { get; init; } = [];
 
     public string RedactionPlaceholder { get; init; } = "***";
+}
+
+internal static class LoggingOptionsExtensions
+{
+    extension(LoggingOptions options)
+    {
+        public LoggingOptions WithEnvironmentDefaults(string variable)
+        {
+            if (options.LoggerFactory is not null)
+                return options;
+
+            return EnvironmentVariables.Get(variable)?.Trim().ToLowerInvariant() switch
+            {
+                "info" => options with { LoggerFactory = new ConsoleErrorLoggerFactory(LogLevel.Information) },
+                "debug" => options with
+                {
+                    LoggerFactory = new ConsoleErrorLoggerFactory(LogLevel.Debug),
+                    LogRequestHeaders = true,
+                    LogResponseHeaders = true,
+                },
+                "trace" => options with
+                {
+                    LoggerFactory = new ConsoleErrorLoggerFactory(LogLevel.Trace),
+                    LogRequestHeaders = true,
+                    LogResponseHeaders = true,
+                    LogRequestBody = true,
+                },
+                _ => options,
+            };
+        }
+    }
 }

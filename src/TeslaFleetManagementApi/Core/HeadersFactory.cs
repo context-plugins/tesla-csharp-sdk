@@ -12,9 +12,11 @@ internal sealed class HeadersFactory
     public HeadersFactory(IReadOnlyCollection<HeaderParam> defaultHeaders) =>
         _defaultHeaders = defaultHeaders;
 
-    public IReadOnlyCollection<HeaderParam> Create(IReadOnlyCollection<HeaderParam> headerParameters)
+    public IReadOnlyCollection<HeaderParam> Create(
+        IReadOnlyCollection<HeaderParam> headerParameters,
+        IReadOnlyCollection<HeaderParam> requestHeaders)
     {
-        IReadOnlyCollection<HeaderParam> allHeaders = [.. _defaultHeaders, .. headerParameters];
+        IReadOnlyCollection<HeaderParam> allHeaders = [.. _defaultHeaders, .. headerParameters, .. requestHeaders];
         return allHeaders.MergeLastWins();
     }
 }

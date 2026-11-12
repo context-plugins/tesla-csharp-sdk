@@ -56,8 +56,6 @@ Register the client with `IServiceCollection` and resolve it from the container.
 services.AddTeslaFleetManagementApiClient(options =>
 {
     options.BearerAuth = "YOUR_BEARER_TOKEN";
-    options.ThirdpartytokenClientCredentials =
-        new OAuth2ClientCredentials { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" };
     options.ThirdpartytokenAuthorizationCode =
         new OAuth2AuthorizationCodeCredentials
         {
@@ -65,6 +63,8 @@ services.AddTeslaFleetManagementApiClient(options =>
             RedirectUri = "YOUR_REDIRECT_URI",
             PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
         };
+    options.ThirdpartytokenClientCredentials =
+        new OAuth2ClientCredentials { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" };
     options.Environment = ServerEnvironment.Production;
     // TODO: configure more client options here
 });
@@ -80,21 +80,72 @@ var httpClient = new HttpClient();
 var options = new TeslaFleetManagementApiClientOptions
 {
     BearerAuth = "YOUR_BEARER_TOKEN",
-    ThirdpartytokenClientCredentials = new OAuth2ClientCredentials
-    {
-        ClientId = "YOUR_CLIENT_ID",
-        ClientSecret = "YOUR_CLIENT_SECRET",
-    },
     ThirdpartytokenAuthorizationCode = new OAuth2AuthorizationCodeCredentials
     {
         ClientId = "YOUR_CLIENT_ID",
         RedirectUri = "YOUR_REDIRECT_URI",
         PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
     },
+    ThirdpartytokenClientCredentials = new OAuth2ClientCredentials
+    {
+        ClientId = "YOUR_CLIENT_ID",
+        ClientSecret = "YOUR_CLIENT_SECRET",
+    },
     Environment = ServerEnvironment.Production,
 };
 var client = new TeslaFleetManagementApiClient(httpClient, options);
 ```
+
+### Credentials, tokens and 401s
+
+Every credential is an option on `TeslaFleetManagementApiClientOptions`. A static credential can also come from a provider that is asked on every request, so a rotated secret reaches the next call without rebuilding the client:
+
+```csharp
+var options = new TeslaFleetManagementApiClientOptions
+{
+    BearerAuthProvider = async ct => await vault.ReadAsync("api-token", ct),
+};
+```
+
+OAuth2 credentials (`OAuth2AuthorizationCodeCredentials`, `OAuth2ClientCredentials`) are exchanged for a token the SDK caches and renews before it expires. With client credentials, an operation that declares scopes gets its own token per scope set, requested with exactly those scopes; operations that declare none share one token requested without a scope. The authorization-code grant holds one token and requests every scope its flow declares, so one consent covers every operation; it keeps the refresh token the server issues and uses it to renew silently. Setting `Scope` on the credentials replaces that with one token requested with that value, and an empty `Scope` requests none. Set it to the scopes your client is registered for whenever the API declares more than it grants you: the default asks for the whole catalogue, and an authorization server that enforces per-client scope registration answers `invalid_scope` to that request.
+
+When a server answers `401 Unauthorized`:
+
+- An OAuth2-authenticated call drops the rejected token, obtains a new one and is sent again, once, under every retry setting including `RetryOptions.Disabled()`. The retry is logged as `attempt 1/1: 401 Unauthorized`; `RetryOptions.OnRetry` is not called for it. A second `401` is returned to you.
+- A call with a static credential (bearer token, API key, basic auth) is not retried; a provider, if you set one, is asked again on the next call, not on this one. A throwing operation raises `ApiException` with `StatusCode` 401.
+
+A request whose body cannot be re-sent (a stream upload) is never retried either, but its `401` still drops the cached token, so the next call recovers. A hook that replaces the `Authorization` header makes the token comparison miss; the one retry still happens.
+
+### Required and optional auth
+
+An operation sends only the credentials its API declares. If a required credential is not configured, the call fails before anything is sent with an `AuthSchemeException` that names the scheme (`… requires the BearerAuth scheme, which is not configured.`). An operation that accepts any of several sends the first configured credential that applies, in the order the API lists them; a configured one that fails falls through to the next, and all of them are named when none is configured. A credential that is set but blank is treated as configured and sent as-is: the SDK checks presence, never content.
+
+### Credentials from environment variables
+
+Any credential option left `null` is read from an environment variable when the client is constructed. The variable name is the SDK name and the option's name, each in upper snake case, plus the member name for multi-member credentials:
+
+| Option | Environment variables |
+| --- | --- |
+| `BearerAuth` | `TESLA_FLEET_MANAGEMENT_API_BEARER_AUTH` |
+| `ThirdpartytokenClientCredentials` | `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_ID`, `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_SECRET`, `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_SCOPE` (optional) |
+| logging | `TESLA_FLEET_MANAGEMENT_API_LOG` = `info`, `debug` or `trace` (read only when no `ILoggerFactory` is set; `AddTeslaFleetManagementApiClient` always supplies the container's) |
+
+`ThirdpartytokenAuthorizationCode` has no environment default.
+
+Rules:
+
+- A value set in code always wins over the environment, including the placeholder assignments in the Quick Start samples; delete the line for any credential you supply through an environment variable.
+- A variable that is unset, empty or whitespace counts as not configured.
+- A multi-member credential is used only when every required variable is set. If some are missing the option stays `null`; constructing the client never throws, and a call that requires that credential fails before anything is sent (see "Required and optional auth").
+- Variables are read once, when the client is constructed. Changing them afterwards has no effect on an existing client.
+
+Hosted applications that already use the .NET options pattern can bind the whole options object from `IConfiguration` instead, which picks up environment variables through the configuration provider (`TeslaFleetManagementApi__BearerAuth`, and so on):
+
+```csharp
+services.AddTeslaFleetManagementApiClient(options => configuration.GetSection("TeslaFleetManagementApi").Bind(options));
+```
+
+Both paths coexist: a slot the bound configuration leaves `null` still falls back to its environment variable.
 
 ---
 
@@ -169,7 +220,7 @@ Everything the SDK raises for a call derives from `SdkException`, which carries 
 | `ResponseDeserializationException` | A response body did not match the type the spec declares | `TargetType`, plus the `ApiException` members |
 | `SdkConnectionException` | The request could not be sent, or the response body could not be read |  |
 | `SdkTimeoutException` | An attempt, the transport, or a Server-Sent Events stream went silent (derives from `SdkConnectionException`) | `Timeout` |
-| `AuthSchemeException` | A credential could not be applied — for example the OAuth2 token endpoint refused it | `SchemeFailures` |
+| `AuthSchemeException` | A required credential is not configured, a provider returned nothing, or a credential could not be applied — for example the OAuth2 token endpoint refused it | `SchemeFailures` |
 
 Catch from specific to general: `ApiException` means the server answered, `SdkConnectionException` means it did not, and `SdkException` is everything the SDK raises. Your own cancellation surfaces as the usual `OperationCanceledException`, never wrapped.
 

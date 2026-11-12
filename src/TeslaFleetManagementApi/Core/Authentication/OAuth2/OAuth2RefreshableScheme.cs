@@ -7,38 +7,51 @@ using System.Threading.Tasks;
 namespace TeslaFleetManagementApi.Core.Authentication.OAuth2;
 
 internal sealed class OAuth2RefreshableScheme<TCredentials> : IRevocableAuthScheme
+    where TCredentials : IOAuth2Credentials
 {
-    private readonly Func<TCredentials> _credFactory;
+    private readonly TCredentials _credentials;
     private readonly IOAuth2RefreshableTokenStrategy<TCredentials> _strategy;
+    private readonly string? _scope;
     private readonly TimeProvider _clock;
     private volatile OAuthTokenRefreshable? _cachedToken;
+    private string? _refreshToken;
     private readonly AsyncLock _lock = new();
 
     public OAuth2RefreshableScheme(
-        Func<TCredentials> credFactory,
+        TCredentials credentials,
         IOAuth2RefreshableTokenStrategy<TCredentials> strategy,
+        string? scope,
         TimeProvider clock)
     {
-        _credFactory = credFactory;
+        _credentials = credentials;
         _strategy = strategy;
+        _scope = scope;
         _clock = clock;
     }
 
-    public async ValueTask Apply(HttpRequestMessage request, CancellationToken cancellationToken)
+    public async ValueTask<AuthOutcome> Apply(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         var token = await GetAndCacheToken(cancellationToken).ConfigureAwait(false);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
+        return AuthOutcome.Applied;
     }
 
-    // Drops the access token only; the refresh token (if any) is preserved on the next acquisition
-    // path because GetAndCacheToken first attempts TryRefreshToken when a refresh token is present.
-    // After Invalidate(), the next call has no cached token and no in-memory refresh token, so it
-    // falls through to GetToken — which is the desired behaviour when the server has revoked the
-    // session.
-    //
-    // Volatile write only — does not take _lock. See IRevocableAuthScheme remarks for the
-    // concurrency contract.
-    public void Invalidate() => _cachedToken = null;
+    public async ValueTask Invalidate(HttpRequestMessage rejected, CancellationToken cancellationToken)
+    {
+        var header = rejected.Headers.Authorization;
+        if (header?.Parameter is null || !string.Equals(header.Scheme, "Bearer", StringComparison.OrdinalIgnoreCase))
+            return;
+
+        var cached = _cachedToken;
+        if (cached is null || cached.AccessToken != header.Parameter)
+            return;
+
+        using (await _lock.LockAsync(cancellationToken).ConfigureAwait(false))
+        {
+            if (_cachedToken is { } current && current.AccessToken == header.Parameter)
+                _cachedToken = null;
+        }
+    }
 
     private async ValueTask<OAuthTokenRefreshable> GetAndCacheToken(CancellationToken ct)
     {
@@ -52,27 +65,29 @@ internal sealed class OAuth2RefreshableScheme<TCredentials> : IRevocableAuthSche
             if (cached is not null && !cached.IsExpired(_clock.GetUtcNow()))
                 return cached;
 
-            var credentials = _credFactory();
-
-            // Attempt refresh if we have a stale token with a refresh token
-            if (cached?.RefreshToken is not null)
+            // Attempt a silent refresh whenever a refresh token is on hand
+            if (_refreshToken is { } refreshToken)
             {
-                var refreshed = await _strategy.TryRefreshToken(credentials, cached.RefreshToken, ct).ConfigureAwait(false);
+                var refreshed = await _strategy.TryRefreshToken(_credentials, refreshToken, ct).ConfigureAwait(false);
                 if (refreshed is not null)
                 {
                     // RFC 6749 §6: AS may omit refresh_token from the response;
                     // preserve the previously-issued refresh token in that case.
+                    _refreshToken = refreshed.RefreshToken ?? refreshToken;
                     var renewed = refreshed with
                     {
-                        RefreshToken = refreshed.RefreshToken ?? cached.RefreshToken,
+                        RefreshToken = _refreshToken,
                         ReceivedAt = _clock.GetUtcNow(),
                     };
                     _cachedToken = renewed;
                     return renewed;
                 }
+
+                _refreshToken = null;
             }
 
-            var fetched = await _strategy.GetToken(credentials, ct).ConfigureAwait(false);
+            var fetched = await _strategy.GetToken(_credentials, _credentials.Scope ?? _scope, ct).ConfigureAwait(false);
+            _refreshToken = fetched.RefreshToken;
             var token = fetched with { ReceivedAt = _clock.GetUtcNow() };
             _cachedToken = token;
             return token;
@@ -82,14 +97,16 @@ internal sealed class OAuth2RefreshableScheme<TCredentials> : IRevocableAuthSche
 
 internal static class OAuth2RefreshableSchemeExtensions
 {
-    extension<TCredentials>(OAuth2RefreshableScheme<TCredentials>)
+    extension<TCredentials>(OAuth2RefreshableScheme<TCredentials>) where TCredentials : IOAuth2Credentials
     {
         public static IAuthScheme Create(
+            string name,
             TCredentials? credentials,
             IOAuth2RefreshableTokenStrategy<TCredentials> strategy,
-            TimeProvider clock) =>
+            TimeProvider clock,
+            string? scope) =>
             credentials is not null
-                ? new OAuth2RefreshableScheme<TCredentials>(() => credentials, strategy, clock)
-                : NoneAuthScheme.Instance;
+                ? new OAuth2RefreshableScheme<TCredentials>(credentials, strategy, scope, clock)
+                : new UnconfiguredAuthScheme(name);
     }
 }

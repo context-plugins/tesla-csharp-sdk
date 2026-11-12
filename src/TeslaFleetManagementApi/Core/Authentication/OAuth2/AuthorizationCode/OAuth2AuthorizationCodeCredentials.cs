@@ -22,7 +22,7 @@ namespace TeslaFleetManagementApi.Core.Authentication.OAuth2.AuthorizationCode;
 /// </remarks>
 public delegate Task<string> AuthorizationCodePrompt(string authorizationUrl, CancellationToken ct);
 
-public sealed class OAuth2AuthorizationCodeCredentials
+public sealed class OAuth2AuthorizationCodeCredentials : IOAuth2Credentials
 {
     public required string ClientId { get; init; }
     public string? ClientSecret { get; init; }

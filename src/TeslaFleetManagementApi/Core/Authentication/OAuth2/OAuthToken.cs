@@ -17,7 +17,7 @@ namespace TeslaFleetManagementApi.Core.Authentication.OAuth2;
 /// expired by the client.
 /// </para>
 /// </remarks>
-public record OAuthToken
+internal record OAuthToken
 {
     [JsonPropertyName("access_token")]
     public required string AccessToken { get; init; }
@@ -38,10 +38,7 @@ public record OAuthToken
 
     private const int ExpiryBufferSeconds = 30;
 
-    // STJ runs this initializer in the parameterless ctor before init-only properties are
-    // assigned. IsExpired short-circuits to false while ExpiresIn is null, so the half-built
-    // window is never observed as expired.
-    internal DateTimeOffset ReceivedAt { get; init; } = DateTimeOffset.UtcNow;
+    internal DateTimeOffset ReceivedAt { get; init; }
 
     public bool IsExpired(DateTimeOffset timeNow) =>
         ExpiresIn is > 0 && timeNow >= ReceivedAt.AddSeconds(ExpiresIn.Value - Math.Min(ExpiryBufferSeconds, ExpiresIn.Value / 2));

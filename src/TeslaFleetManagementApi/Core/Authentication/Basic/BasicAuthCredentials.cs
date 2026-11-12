@@ -15,3 +15,19 @@ public sealed class BasicAuthCredentials
         return Convert.ToBase64String(bytes);
     }
 }
+
+internal static class BasicAuthCredentialsExtensions
+{
+    extension(BasicAuthCredentials? credentials)
+    {
+        public BasicAuthCredentials? WithEnvironmentDefaults(string usernameVariable, string passwordVariable)
+        {
+            if (credentials is not null)
+                return credentials;
+
+            return EnvironmentVariables.Get(usernameVariable) is { } username && EnvironmentVariables.Get(passwordVariable) is { } password
+                ? new BasicAuthCredentials { Username = username, Password = password }
+                : null;
+        }
+    }
+}

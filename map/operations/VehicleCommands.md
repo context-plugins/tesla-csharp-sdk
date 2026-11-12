@@ -8,7 +8,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Actuatetrunk
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Actuatetrunk(ActuatetrunkOperationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
@@ -22,7 +22,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Addchargeschedule
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Addchargeschedule(AddchargescheduleOperationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
@@ -36,7 +36,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Addpreconditionschedule
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Addpreconditionschedule(AddpreconditionscheduleOperationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
@@ -50,7 +50,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Adjustmediavolume
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Adjustmediavolume(AdjustmediavolumeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
@@ -64,7 +64,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Cancelsoftwareupdate
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Cancelsoftwareupdate(CancelsoftwareupdateRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -77,7 +77,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Chargemaxrange
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Chargemaxrange(ChargemaxrangeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -90,7 +90,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Chargestandard
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Chargestandard(ChargestandardRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -103,7 +103,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### ClearPiNtoDriveAdmin
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `ClearPiNtoDriveAdmin(ClearPiNtoDriveAdminRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -116,7 +116,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Closechargeportdoor
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Closechargeportdoor(ClosechargeportdoorRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -129,7 +129,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### EnableordisableGuestMode
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `EnableordisableGuestMode(EnableordisableGuestModeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`, `Body`
 - **Returns**: `CommandResponse`
@@ -143,7 +143,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Eraseuserdata
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Eraseuserdata(EraseuserdataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -156,7 +156,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Flashlights
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Flashlights(FlashlightsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -169,7 +169,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Honkhorn
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Honkhorn(HonkhornRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -182,7 +182,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Lockdoors
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Lockdoors(LockdoorsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -195,7 +195,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Nextfavoritemediatrack
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Nextfavoritemediatrack(NextfavoritemediatrackRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -208,7 +208,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Openchargeportdoor
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Openchargeportdoor(OpenchargeportdoorRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -221,7 +221,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Startcharging
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Startcharging(StartchargingRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -234,7 +234,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Startclimatepreconditioning
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Startclimatepreconditioning(StartclimatepreconditioningRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -247,7 +247,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Stopcharging
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Stopcharging(StopchargingRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -260,7 +260,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Stopclimatepreconditioning
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Stopclimatepreconditioning(StopclimatepreconditioningRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`
@@ -273,7 +273,7 @@ Accessor: `client.VehicleCommands` · Source: `src/TeslaFleetManagementApi/Api/V
 
 ### Unlockdoors
 
-- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials`
+- **Auth**: `options.ThirdpartytokenAuthorizationCode` OR `options.ThirdpartytokenClientCredentials` (scopes: `openid`, `offline_access`, `user_data`, `vehicle_device_data`, `vehicle_location`, `vehicle_cmds`, `vehicle_charging_cmds`, `vehicle_specs`, `energy_device_data`, `energy_cmds`, `enterprise_management`)
 - **Signature**: `Unlockdoors(UnlockdoorsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
   - required: `VehicleTag`
 - **Returns**: `CommandResponse`

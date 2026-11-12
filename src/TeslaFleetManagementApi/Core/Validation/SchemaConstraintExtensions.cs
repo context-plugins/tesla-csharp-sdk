@@ -23,7 +23,7 @@ internal static class SchemaConstraintExtensions
             FormatKind.JsonPointer => IsJsonPointer(value),
             FormatKind.Ipv4 => IsIpAddress(value, AddressFamily.InterNetwork),
             FormatKind.Ipv6 => IsIpAddress(value, AddressFamily.InterNetworkV6),
-            FormatKind.Uri => IsUri(value, UriKind.Absolute),
+            FormatKind.Uri => IsAbsoluteUri(value),
             FormatKind.UriReference => IsUri(value, UriKind.RelativeOrAbsolute),
             _ => true,
         };
@@ -115,6 +115,10 @@ internal static class SchemaConstraintExtensions
         IPAddress.TryParse(value, out var address) && address.AddressFamily == family;
 
     private static bool IsUri(string value, UriKind kind) => Uri.TryCreate(value, kind, out _);
+
+    private static bool IsAbsoluteUri(string value) =>
+        Uri.TryCreate(value, UriKind.Absolute, out var uri) &&
+        value.StartsWith($"{uri.Scheme}:", StringComparison.OrdinalIgnoreCase);
 
     private static bool IsJsonPointer(string value)
     {

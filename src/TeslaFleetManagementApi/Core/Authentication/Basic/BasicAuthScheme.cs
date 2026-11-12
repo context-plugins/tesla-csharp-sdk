@@ -7,15 +7,23 @@ namespace TeslaFleetManagementApi.Core.Authentication.Basic;
 
 internal sealed class BasicAuthScheme : IAuthScheme
 {
-    private readonly BasicAuthCredentials _credentials;
+    private readonly string _name;
+    private readonly CredentialProvider<BasicAuthCredentials> _provider;
 
-    public BasicAuthScheme(BasicAuthCredentials credentials) => _credentials = credentials;
-
-    public ValueTask Apply(HttpRequestMessage request, CancellationToken cancellationToken)
+    public BasicAuthScheme(string name, CredentialProvider<BasicAuthCredentials> provider)
     {
-        var encoded = _credentials.Encode();
-        request.Headers.Authorization = new AuthenticationHeaderValue("Basic", encoded);
-        return default;
+        _name = name;
+        _provider = provider;
+    }
+
+    public async ValueTask<AuthOutcome> Apply(HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        var credentials = await _provider(cancellationToken).ConfigureAwait(false);
+        if (credentials is null)
+            return AuthOutcome.Unsatisfied(_name);
+
+        request.Headers.Authorization = new AuthenticationHeaderValue("Basic", credentials.Encode());
+        return AuthOutcome.Applied;
     }
 }
 
@@ -23,9 +31,9 @@ internal static class BasicAuthSchemeExtensions
 {
     extension(BasicAuthScheme)
     {
-        public static IAuthScheme Create(BasicAuthCredentials? credentials) =>
-            credentials is not null
-                ? new BasicAuthScheme(credentials)
-                : NoneAuthScheme.Instance;
+        public static IAuthScheme Create(string name, CredentialProvider<BasicAuthCredentials>? provider, BasicAuthCredentials? value) =>
+            (provider ?? CredentialProvider.Constant(value)) is { } resolved
+                ? new BasicAuthScheme(name, resolved)
+                : new UnconfiguredAuthScheme(name);
     }
 }

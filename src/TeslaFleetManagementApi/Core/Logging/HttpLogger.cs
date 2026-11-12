@@ -22,12 +22,11 @@ internal sealed class HttpLogger
 
     public HttpLogger(LoggingOptions options, string clientName, TimeProvider clock)
     {
-        var resolved = LoggingEnvironment.Resolve(options, clientName);
-        _redaction = new Redaction(resolved);
-        _logRequestHeaders = resolved.LogRequestHeaders;
-        _logRequestBody = resolved.LogRequestBody;
-        _logResponseHeaders = resolved.LogResponseHeaders;
-        _logger = (resolved.LoggerFactory ?? NullLoggerFactory.Instance).CreateLogger($"{clientName}.Http");
+        _redaction = new Redaction(options);
+        _logRequestHeaders = options.LogRequestHeaders;
+        _logRequestBody = options.LogRequestBody;
+        _logResponseHeaders = options.LogResponseHeaders;
+        _logger = (options.LoggerFactory ?? NullLoggerFactory.Instance).CreateLogger($"{clientName}.Http");
         _clock = clock;
     }
 

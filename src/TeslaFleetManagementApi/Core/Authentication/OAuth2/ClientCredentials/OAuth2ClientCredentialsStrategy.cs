@@ -31,7 +31,7 @@ internal sealed class OAuth2ClientCredentialsStrategy : IOAuth2TokenStrategy<OAu
         => (_tokenUrl, _rawClient, _headerParams, _bodyParams) =
             (tokenUrl, rawClient, authHeaders, authBodyParams);
 
-    public Task<OAuthToken> GetToken(OAuth2ClientCredentials credentials, CancellationToken ct) =>
+    public Task<OAuthToken> GetToken(OAuth2ClientCredentials credentials, string? scope, CancellationToken ct) =>
         _rawClient.Execute(
             _tokenUrl, [], [],
             [
@@ -41,17 +41,17 @@ internal sealed class OAuth2ClientCredentialsStrategy : IOAuth2TokenStrategy<OAu
             HttpMethod.Post,
             FormUrlEncodedRequest.Create([
                 new Param("grant_type", "client_credentials"),
-                .. ScopeParams(credentials.Scope),
+                .. ScopeParams(scope),
                 .. _bodyParams(credentials.ClientId, credentials.ClientSecret),
             ]),
             JsonResponse.Create<OAuthToken>(),
             RawErrorResponse.Instance,
-            [],
+            AuthScheme.None,
             null,
             ct);
 
     private static IReadOnlyList<Param> ScopeParams(string? scope) =>
-        scope is null or "" ? [] : [new Param("scope", scope)];
+        scope is null ? [] : [new Param("scope", scope)];
 
     private static IReadOnlyList<HeaderParam> HeaderParams(string clientId, string? clientSecret)
     {

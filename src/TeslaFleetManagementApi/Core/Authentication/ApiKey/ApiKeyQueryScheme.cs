@@ -7,19 +7,25 @@ namespace TeslaFleetManagementApi.Core.Authentication.ApiKey;
 
 internal sealed class ApiKeyQueryScheme : IAuthScheme
 {
+    private readonly string _name;
     private readonly string _paramName;
-    private readonly string _apiKey;
+    private readonly CredentialProvider<string> _provider;
 
-    public ApiKeyQueryScheme(string paramName, string apiKey)
+    public ApiKeyQueryScheme(string name, string paramName, CredentialProvider<string> provider)
     {
+        _name = name;
         _paramName = paramName;
-        _apiKey = apiKey;
+        _provider = provider;
     }
 
-    public ValueTask Apply(HttpRequestMessage request, CancellationToken cancellationToken)
+    public async ValueTask<AuthOutcome> Apply(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        request.RequestUri = AppendQueryParam(request.RequestUri, _paramName, _apiKey);
-        return default;
+        var apiKey = await _provider(cancellationToken).ConfigureAwait(false);
+        if (apiKey is null)
+            return AuthOutcome.Unsatisfied(_name);
+
+        request.RequestUri = AppendQueryParam(request.RequestUri, _paramName, apiKey);
+        return AuthOutcome.Applied;
     }
 
     private static Uri AppendQueryParam(Uri? uri, string name, string value)
@@ -37,9 +43,9 @@ internal static class ApiKeyQuerySchemeExtensions
 {
     extension(ApiKeyQueryScheme)
     {
-        public static IAuthScheme Create(string paramName, string? apiKey) =>
-            apiKey is not null
-                ? new ApiKeyQueryScheme(paramName, apiKey)
-                : NoneAuthScheme.Instance;
+        public static IAuthScheme Create(string name, string paramName, CredentialProvider<string>? provider, string? value) =>
+            (provider ?? CredentialProvider.Constant(value)) is { } resolved
+                ? new ApiKeyQueryScheme(name, paramName, resolved)
+                : new UnconfiguredAuthScheme(name);
     }
 }

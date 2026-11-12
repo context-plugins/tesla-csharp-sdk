@@ -25,7 +25,11 @@ internal sealed class PlainTextResponse<TResponse> : IResponse<TResponse>
             {
                 return _map(responseString);
             }
-            catch (Exception ex) when (ex is not OperationCanceledException)
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                throw;
+            }
+            catch (Exception ex)
             {
                 throw ResponseDeserializationException.For(context, typeof(TResponse),
                     $"{context.Call} returned a body that could not be parsed as {typeof(TResponse).Name}.", ex);
