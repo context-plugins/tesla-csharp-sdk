@@ -16,4 +16,5 @@ public class Server
 
     internal UrlTemplate Default(string path) => _options.Default.Resolve(_environment, path);
     internal UrlTemplate AuthServer(string path) => _options.AuthServer.Resolve(_environment, path);
+    internal UrlTemplate AccessTokenServer(string path) => _options.AccessTokenServer.Resolve(_environment, path);
 }

@@ -195,9 +195,9 @@ Namespaces by content type (add `using` accordingly):
 
 **Bearer token.** Set `options.BearerAuth = "<token>"`, or `options.BearerAuthProvider` to a delegate asked on every request.
 
-**OAuth2 (authorization code).** Set `options.ThirdpartytokenAuthorizationCode` with client id, redirect URI and a `PromptForAuthorizationCode` callback; authorization at `https://auth.tesla.com/oauth2/v3/authorize`, tokens from `https://auth.tesla.com/oauth2/v3/token`.
+**OAuth2 (authorization code).** Set `options.ThirdpartytokenAuthorizationCode` with client id, redirect URI and a `PromptForAuthorizationCode` callback; authorization at `https://auth.tesla.com/oauth2/v3/authorize`, tokens from `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3/token`.
 
-**OAuth2 (client credentials).** Set `options.ThirdpartytokenClientCredentials` with your client id and secret; tokens are fetched from `https://auth.tesla.com/oauth2/v3/token`.
+**OAuth2 (client credentials).** Set `options.ThirdpartytokenClientCredentials` with your client id and secret; tokens are fetched from `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3/token`.
 
 Operation blocks name their credential in an **Auth** bullet; an operation whose spec declares no scheme carries no such bullet.
 
@@ -214,12 +214,13 @@ A required credential you never configured fails the call with `AuthSchemeExcept
 | --- | --- | --- |
 | `ServerEnvironment.Production` *(default)* | `production` | Production |
 
-**2 server groups.** Base-URL templates and override points (`options.Server.…`):
+**3 server groups.** Base-URL templates and override points (`options.Server.…`):
 
 | Group | `Production` base URL | Override point |
 | --- | --- | --- |
 | `Default` | `https://fleet-api.prd.na.vn.cloud.tesla.com` | `options.Server.Default.Production.BaseUrl` |
 | `AuthServer` | `https://auth.tesla.com/oauth2/v3` | `options.Server.AuthServer.Production.BaseUrl` |
+| `AccessTokenServer` | `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3` | `options.Server.AccessTokenServer.Production.BaseUrl` |
 
 Retry/resilience is configurable via `options.Retry` (`RetryOptions`, backed by Polly).
 

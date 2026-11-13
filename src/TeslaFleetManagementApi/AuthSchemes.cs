@@ -29,7 +29,7 @@ internal sealed class AuthSchemes
                 options.ThirdpartytokenAuthorizationCode,
                 OAuth2AuthorizationCodeStrategy.ForFormBodyRequest(
                     server.AuthServer("/authorize"),
-                    server.AuthServer("/token"),
+                    server.AccessTokenServer("/token"),
                     rawClient,
                     urlFactory),
                 options.TimeProvider,
@@ -41,7 +41,7 @@ internal sealed class AuthSchemes
                     "TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_ID",
                     "TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_SECRET",
                     "TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_SCOPE"),
-                OAuth2ClientCredentialsStrategy.ForFormBodyRequest(server.AuthServer("/token"), rawClient),
+                OAuth2ClientCredentialsStrategy.ForFormBodyRequest(server.AccessTokenServer("/token"), rawClient),
                 options.TimeProvider);
     }
 }
