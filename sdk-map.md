@@ -36,6 +36,7 @@ var options = new TeslaFleetManagementApiClientOptions
     {
         ClientId = "YOUR_CLIENT_ID",
         ClientSecret = "YOUR_CLIENT_SECRET",
+        Audience = "https://fleet-api.prd.na.vn.cloud.tesla.com",
     },
     Environment = ServerEnvironment.Production,
 };
@@ -56,7 +57,7 @@ services.AddTeslaFleetManagementApiClient(options =>
             PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
         };
     options.ThirdpartytokenClientCredentials =
-        new OAuth2ClientCredentials { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" };
+        new OAuth2ClientCredentials { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET", Audience = "https://fleet-api.prd.na.vn.cloud.tesla.com" };
     options.Environment = ServerEnvironment.Production;
     // TODO: configure more client options here
 });
@@ -197,7 +198,7 @@ Namespaces by content type (add `using` accordingly):
 
 **OAuth2 (authorization code).** Set `options.ThirdpartytokenAuthorizationCode` with client id, redirect URI and a `PromptForAuthorizationCode` callback; authorization at `https://auth.tesla.com/oauth2/v3/authorize`, tokens from `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3/token`.
 
-**OAuth2 (client credentials).** Set `options.ThirdpartytokenClientCredentials` with your client id and secret; tokens are fetched from `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3/token`.
+**OAuth2 (client credentials).** Set `options.ThirdpartytokenClientCredentials` with your client id, secret and `Audience` (the Fleet API base URL of the token's region); tokens are fetched from `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3/token`.
 
 Operation blocks name their credential in an **Auth** bullet; an operation whose spec declares no scheme carries no such bullet.
 

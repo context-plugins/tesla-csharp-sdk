@@ -64,7 +64,7 @@ services.AddTeslaFleetManagementApiClient(options =>
             PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
         };
     options.ThirdpartytokenClientCredentials =
-        new OAuth2ClientCredentials { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" };
+        new OAuth2ClientCredentials { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET", Audience = "https://fleet-api.prd.na.vn.cloud.tesla.com" };
     options.Environment = ServerEnvironment.Production;
     // TODO: configure more client options here
 });
@@ -90,6 +90,7 @@ var options = new TeslaFleetManagementApiClientOptions
     {
         ClientId = "YOUR_CLIENT_ID",
         ClientSecret = "YOUR_CLIENT_SECRET",
+        Audience = "https://fleet-api.prd.na.vn.cloud.tesla.com",
     },
     Environment = ServerEnvironment.Production,
 };
@@ -127,7 +128,7 @@ Any credential option left `null` is read from an environment variable when the 
 | Option | Environment variables |
 | --- | --- |
 | `BearerAuth` | `TESLA_FLEET_MANAGEMENT_API_BEARER_AUTH` |
-| `ThirdpartytokenClientCredentials` | `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_ID`, `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_SECRET`, `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_SCOPE` (optional) |
+| `ThirdpartytokenClientCredentials` | `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_ID`, `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_SECRET`, `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_AUDIENCE`, `TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_SCOPE` (optional) |
 | logging | `TESLA_FLEET_MANAGEMENT_API_LOG` = `info`, `debug` or `trace` (read only when no `ILoggerFactory` is set; `AddTeslaFleetManagementApiClient` always supplies the container's) |
 
 `ThirdpartytokenAuthorizationCode` has no environment default.
