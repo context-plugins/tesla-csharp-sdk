@@ -61,6 +61,7 @@ services.AddTeslaFleetManagementApiClient(options =>
         {
             ClientId = "YOUR_CLIENT_ID",
             RedirectUri = "YOUR_REDIRECT_URI",
+            Audience = "https://fleet-api.prd.na.vn.cloud.tesla.com",
             PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
         };
     options.ThirdpartytokenClientCredentials =
@@ -84,6 +85,7 @@ var options = new TeslaFleetManagementApiClientOptions
     {
         ClientId = "YOUR_CLIENT_ID",
         RedirectUri = "YOUR_REDIRECT_URI",
+        Audience = "https://fleet-api.prd.na.vn.cloud.tesla.com",
         PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
     },
     ThirdpartytokenClientCredentials = new OAuth2ClientCredentials

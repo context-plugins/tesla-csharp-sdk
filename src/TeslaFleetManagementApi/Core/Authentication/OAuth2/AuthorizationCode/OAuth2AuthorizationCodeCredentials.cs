@@ -27,6 +27,8 @@ public sealed class OAuth2AuthorizationCodeCredentials : IOAuth2Credentials
     public required string ClientId { get; init; }
     public string? ClientSecret { get; init; }
     public required string RedirectUri { get; init; }
+    /// <summary>Fleet API base URL of the region the token is for, e.g. <c>https://fleet-api.prd.na.vn.cloud.tesla.com</c>. Sent on the code exchange.</summary>
+    public required string Audience { get; init; }
     public string? Scope { get; init; }
     public string? State { get; init; }
     /// <summary>

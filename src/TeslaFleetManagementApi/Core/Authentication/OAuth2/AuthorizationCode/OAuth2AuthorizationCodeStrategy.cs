@@ -63,6 +63,7 @@ internal sealed class OAuth2AuthorizationCodeStrategy
                 new Param("grant_type", "authorization_code"),
                 new Param("code", code),
                 new Param("redirect_uri", credentials.RedirectUri),
+                new Param("audience", credentials.Audience),
                 .. CodeVerifierParams(pkce),
                 .. _bodyParams(credentials.ClientId, credentials.ClientSecret),
             ]),
