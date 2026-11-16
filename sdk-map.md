@@ -30,6 +30,7 @@ var options = new TeslaFleetManagementApiClientOptions
     {
         ClientId = "YOUR_CLIENT_ID",
         RedirectUri = "YOUR_REDIRECT_URI",
+        Audience = "https://fleet-api.prd.na.vn.cloud.tesla.com",
         PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
     },
     ThirdpartytokenClientCredentials = new OAuth2ClientCredentials
@@ -54,6 +55,7 @@ services.AddTeslaFleetManagementApiClient(options =>
         {
             ClientId = "YOUR_CLIENT_ID",
             RedirectUri = "YOUR_REDIRECT_URI",
+            Audience = "https://fleet-api.prd.na.vn.cloud.tesla.com",
             PromptForAuthorizationCode = (authUrl, ct) => Task.FromResult(""),
         };
     options.ThirdpartytokenClientCredentials =
@@ -196,7 +198,7 @@ Namespaces by content type (add `using` accordingly):
 
 **Bearer token.** Set `options.BearerAuth = "<token>"`, or `options.BearerAuthProvider` to a delegate asked on every request.
 
-**OAuth2 (authorization code).** Set `options.ThirdpartytokenAuthorizationCode` with client id, redirect URI and a `PromptForAuthorizationCode` callback; authorization at `https://auth.tesla.com/oauth2/v3/authorize`, tokens from `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3/token`.
+**OAuth2 (authorization code).** Set `options.ThirdpartytokenAuthorizationCode` with client id, redirect URI, `Audience` and a `PromptForAuthorizationCode` callback; authorization at `https://auth.tesla.com/oauth2/v3/authorize`, tokens from `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3/token`.
 
 **OAuth2 (client credentials).** Set `options.ThirdpartytokenClientCredentials` with your client id, secret and `Audience` (the Fleet API base URL of the token's region); tokens are fetched from `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3/token`.
 
