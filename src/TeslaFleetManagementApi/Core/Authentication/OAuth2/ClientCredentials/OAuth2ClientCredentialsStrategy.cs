@@ -42,6 +42,7 @@ internal sealed class OAuth2ClientCredentialsStrategy : IOAuth2TokenStrategy<OAu
             FormUrlEncodedRequest.Create([
                 new Param("grant_type", "client_credentials"),
                 .. ScopeParams(scope),
+                new Param("audience", credentials.Audience),
                 .. _bodyParams(credentials.ClientId, credentials.ClientSecret),
             ]),
             JsonResponse.Create<OAuthToken>(),

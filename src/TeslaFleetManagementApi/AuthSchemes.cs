@@ -40,6 +40,7 @@ internal sealed class AuthSchemes
                 options.ThirdpartytokenClientCredentials.WithEnvironmentDefaults(
                     "TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_ID",
                     "TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_CLIENT_SECRET",
+                    "TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_AUDIENCE",
                     "TESLA_FLEET_MANAGEMENT_API_THIRDPARTYTOKEN_CLIENT_CREDENTIALS_SCOPE"),
                 OAuth2ClientCredentialsStrategy.ForFormBodyRequest(server.AccessTokenServer("/token"), rawClient),
                 options.TimeProvider);
